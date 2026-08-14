@@ -2,6 +2,8 @@
 # taildrop-send — pick an online tailnet device, send files via Taildrop.
 # Backend for the Nemo "Send via Taildrop" action; works standalone too:
 #   taildrop-send file1 file2 ...
+# tailscale 1.102: send = `tailscale file cp <file> <ip>:` (scp-style, trailing
+# colon mandatory) — there is no `file send` subcommand.
 set -u
 
 notify() { notify-send -a Taildrop -i document-send "${1:-Taildrop}" "${2:-}" 2>/dev/null || true; }
@@ -36,7 +38,7 @@ choice=$(zenity --list --title "Send via Taildrop" \
 
 ok=0 fail=0
 for f in "${files[@]}"; do
-  if tailscale file send "$choice" "$f" >/dev/null 2>&1; then
+  if tailscale file cp "$f" "$choice": >/dev/null 2>&1; then
     ok=$((ok + 1))
   else
     fail=$((fail + 1))
