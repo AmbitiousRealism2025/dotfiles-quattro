@@ -2,3 +2,6 @@
 *.bak
 *.bak.*
 *.omarchy-upgrade-to-quattro.*
+
+# Albion harness session state (goal tracking) — never stage.
+.albion/
