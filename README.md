@@ -45,7 +45,9 @@ reload and all binds spot-checked via `omarchy menu keybindings --print`.
   the reverse of vim convention. Deliberate portabeast muscle memory, noted in
   the original inventory; do not "fix" it. Replaced defaults: J was togglesplit,
   K was the keybindings menu, L was the layout toggle. H/L focus left/right as
-  usual.
+  usual. The two displaced stock dispatchers were re-homed rather than lost:
+  **SUPER+U = togglesplit, SUPER+I = workspace layout toggle** (both keys were
+  otherwise unbound).
 - **SUPER+W = fullscreen, SUPER+F = maximize.** Omarchy ships both keys unbound
   for this user's flow (`W` was close-window, `F` was real fullscreen in
   defaults — both `hl.unbind`-ed and rebound). Close moved to `SUPER+Q`.

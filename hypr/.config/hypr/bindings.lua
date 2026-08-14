@@ -91,6 +91,11 @@ o.bind("SUPER + SHIFT + J", "Move window up", hl.dsp.window.swap({ direction = "
 o.bind("SUPER + SHIFT + K", "Move window down", hl.dsp.window.swap({ direction = "d" }))
 o.bind("SUPER + SHIFT + L", "Move window right", hl.dsp.window.swap({ direction = "r" }))
 
+-- Restored stock dispatchers displaced by the port: togglesplit lost its
+-- SUPER+J home to focus-up, workspace layout toggle lost SUPER+L to focus-right.
+o.bind("SUPER + U", "Toggle window split", hl.dsp.layout("togglesplit"))
+o.bind("SUPER + I", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
+
 -- Workspaces 1-9. Default SUPER+SHIFT+N moves AND follows; portabeast moves
 -- without following. (Default silent-move stays available on SUPER+SHIFT+ALT+N.)
 for workspace = 1, 9 do
