@@ -139,17 +139,18 @@ pair with the compositor-level editing shortcuts above.
 `ELECTRON_OZONE_PLATFORM_HINT=auto` (native Wayland for Electron apps when
 possible) and `TERMINAL=kitty`.
 
-### taildrop/ — incoming Taildrop receiver (2026-08-14)
+### taildrop/ — Taildrop send + receive (2026-08-14)
 
 Taildrop is the AirDrop replacement here (LocalSend covers same-LAN GUI sends;
-it's in the package list). A systemd user unit runs
+it's in the package list). Incoming: a systemd user unit runs
 `tailscale file get --loop --conflict=rename --verbose ~/Downloads` via the
 `taildrop-watch` wrapper, raising a notify-send per received file. Restart on
-failure rides out the pre-login window. Note: `sudo tailscale set
---operator=$USER` had to be re-applied — the migration's "operator set" (E13)
-had not survived reality. Send to this machine from any tailnet device's
-Tailscale app (share sheet → Tailscale), or from here:
-`tailscale file send <node> <file>`.
+failure rides out the pre-login window. Outgoing: `taildrop-send` (zenity
+device picker over `tailscale status --json`) behind a Nemo action
+("Send via Taildrop" on right-click); directories are skipped with a notice —
+Taildrop sends files only. Note: `sudo tailscale set --operator=$USER` had to
+be re-applied — the migration's "operator set" (E13) had not survived reality.
+Possible future: a proper GUI app — see `docs/taildrop-app-outline.md`.
 
 ### applications/ — desktop entries (E14)
 

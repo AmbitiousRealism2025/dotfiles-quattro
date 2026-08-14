@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Send via Taildrop
+Comment=Send files to a device on your tailnet
+Exec=/home/ambitiousrealism/.local/bin/taildrop-send %F
+Icon-Name=document-send
+Selection=any
+Extensions=any;
+Dependencies=tailscale;

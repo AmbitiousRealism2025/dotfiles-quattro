@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# taildrop-send — pick an online tailnet device, send files via Taildrop.
+# Backend for the Nemo "Send via Taildrop" action; works standalone too:
+#   taildrop-send file1 file2 ...
+set -u
+
+notify() { notify-send -a Taildrop -i document-send "${1:-Taildrop}" "${2:-}" 2>/dev/null || true; }
+
+# Taildrop sends files only — skip directories with a notice.
+files=()
+for f in "$@"; do
+  if [ -d "$f" ]; then
+    notify "Taildrop skipped" "$(basename "$f") is a directory — Taildrop sends files only"
+  else
+    files+=("$f")
+  fi
+done
+[ ${#files[@]} -gt 0 ] || exit 0
+
+# Online peers from tailscaled (the Peer map excludes self).
+mapfile -t devices < <(tailscale status --json 2>/dev/null |
+  jq -r '.Peer // {} | [.[] | select(.Online)] | sort_by(.HostName) | .[] | "\(.HostName)|\(.TailscaleIPs[0] // "?")"')
+if [ ${#devices[@]} -eq 0 ]; then
+  notify "Taildrop" "No online tailnet devices"
+  exit 1
+fi
+
+choice=$(zenity --list --title "Send via Taildrop" \
+  --text "Send ${#files[@]} file(s) to:" \
+  --height 260 \
+  --column Device --column IP "${devices[@]}") || exit 0
+[ -n "$choice" ] || exit 0
+
+ok=0 fail=0
+for f in "${files[@]}"; do
+  if tailscale file send "$choice" "$f" >/dev/null 2>&1; then
+    ok=$((ok + 1))
+  else
+    fail=$((fail + 1))
+  fi
+done
+
+if [ "$fail" -eq 0 ]; then
+  notify "Taildrop sent" "$ok file(s) → $choice"
+else
+  notify "Taildrop incomplete" "sent $ok, failed $fail → $choice"
+fi
