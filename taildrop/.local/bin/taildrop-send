@@ -17,9 +17,11 @@ for f in "$@"; do
 done
 [ ${#files[@]} -gt 0 ] || exit 0
 
-# Online peers from tailscaled (the Peer map excludes self).
+# Online peers from tailscaled (the Peer map excludes self). Display the DNS
+# short name — iOS devices report HostName "localhost", which is useless and
+# ambiguous — and send by IP, the only stable identifier.
 mapfile -t devices < <(tailscale status --json 2>/dev/null |
-  jq -r '.Peer // {} | [.[] | select(.Online)] | sort_by(.HostName) | .[] | "\(.HostName)|\(.TailscaleIPs[0] // "?")"')
+  jq -r '.Peer // {} | [.[] | select(.Online)] | sort_by(.DNSName // .HostName) | .[] | "\((.DNSName // .HostName) | sub("[.]$"; "") | split(".")[0])|\(.TailscaleIPs[0] // "?")"')
 if [ ${#devices[@]} -eq 0 ]; then
   notify "Taildrop" "No online tailnet devices"
   exit 1
@@ -28,6 +30,7 @@ fi
 choice=$(zenity --list --title "Send via Taildrop" \
   --text "Send ${#files[@]} file(s) to:" \
   --height 260 \
+  --print-column 2 \
   --column Device --column IP "${devices[@]}") || exit 0
 [ -n "$choice" ] || exit 0
 
