@@ -1,0 +1,33 @@
+# Graphene — portabeast palette, exact values harvested from the NixOS side
+# (kitty 16-color palette + border/tab colors in hyprland.nix).
+mode = "dark"
+
+accent = "#66cccc"
+selection = "#333399"
+muted = "#424153"
+
+background = "#070916"
+dark_background = "#050712"
+darker_background = "#000000"
+lighter_background = "#11142a"
+
+foreground = "#dffcff"
+dark_foreground = "#424153"
+light_foreground = "#a9cbd2"
+bright_foreground = "#ffffff"
+
+red = "#ef708f"
+yellow = "#e6b96c"
+orange = "#f4cf8d"
+green = "#66cccc"
+cyan = "#66cccc"
+blue = "#0066cc"
+magenta = "#8b8be6"
+brown = "#a9cbd2"
+
+bright_red = "#ff8eaa"
+bright_yellow = "#f4cf8d"
+bright_green = "#8ee6e6"
+bright_cyan = "#9af2f2"
+bright_blue = "#4b91ff"
+bright_magenta = "#adadff"

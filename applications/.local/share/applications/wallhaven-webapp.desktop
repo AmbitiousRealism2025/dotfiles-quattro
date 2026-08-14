@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wallhaven
+Comment=Browse wallpapers on Wallhaven
+Exec=zen-browser --new-window https://wallhaven.cc/
+Icon=web-browser
+Terminal=false
+Categories=Network;WebBrowser;

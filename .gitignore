@@ -1,0 +1,4 @@
+# Backup-file patterns that litter the live config dirs — never commit these.
+*.bak
+*.bak.*
+*.omarchy-upgrade-to-quattro.*

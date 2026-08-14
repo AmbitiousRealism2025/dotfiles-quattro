@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Keychron Launcher
+Comment=Configure a Keychron keyboard with Chrome WebHID
+Exec=google-chrome-stable --new-window https://launcher.keychron.com/
+Icon=input-keyboard
+Terminal=false
+Categories=Settings;HardwareSettings;
