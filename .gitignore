@@ -5,3 +5,10 @@
 
 # Albion harness session state (goal tracking) — never stage.
 .albion/
+
+# PKGBUILD build artifacts and the AUR clone's git dir (kept local only).
+pkgbuilds/*/src/
+pkgbuilds/*/pkg/
+pkgbuilds/*/*.pkg.tar.zst
+pkgbuilds/*/*.pkg.tar.zst.sig
+pkgbuilds/*/.git/
