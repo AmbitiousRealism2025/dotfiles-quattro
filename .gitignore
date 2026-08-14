@@ -12,3 +12,6 @@ pkgbuilds/*/pkg/
 pkgbuilds/*/*.pkg.tar.zst
 pkgbuilds/*/*.pkg.tar.zst.sig
 pkgbuilds/*/.git/
+
+# makepkg git-source cache (bare clone of nemo-extensions)
+pkgbuilds/*/nemo-extensions/
