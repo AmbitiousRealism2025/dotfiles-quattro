@@ -1,0 +1,13 @@
+[Unit]
+Description=Taildrop receiver (incoming files → ~/Downloads + notification)
+Documentation=https://tailscale.com/docs/features/taildrop
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/taildrop-watch
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=default.target

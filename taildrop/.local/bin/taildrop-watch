@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Taildrop receiver for quattro: lands incoming Taildrop files in ~/Downloads
+# and raises a desktop notification per file. Run by taildrop.service (systemd
+# user unit); restarts on failure until the tailnet is up.
+set -u
+
+DEST="${HOME}/Downloads"
+mkdir -p "$DEST"
+
+# --loop keeps receiving as files arrive; --conflict=rename never clobbers.
+tailscale file get --loop --conflict=rename --verbose "$DEST" | while IFS= read -r line; do
+  # Skip the quiet startup/status lines; only announce actual deliveries.
+  case "$line" in
+    *in:*|*.partial*|*"") continue ;;
+  esac
+  notify-send -a Taildrop -i document-save "Taildrop received" "$line" 2>/dev/null || true
+done

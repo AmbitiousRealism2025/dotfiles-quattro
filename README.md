@@ -19,7 +19,9 @@ One Stow package per concern, each mirroring `$HOME`:
 | `zsh/` | `.zshrc`, `.config/zsh/{starship,zoxide}-init.zsh` |
 | `kitty/` | `.config/kitty/kitty.conf` |
 | `environment/` | `.config/environment.d/portabeast.conf` |
-| `applications/` | `.local/share/applications/{wallhaven-webapp,keychron-launcher}.desktop` |
+| `applications/` | `.local/share/applications/{wallhaven-webapp,keychron-launcher,yazi}.desktop` |
+| `taildrop/` | `.config/systemd/user/taildrop.service`, `.local/bin/taildrop-watch` |
+| `pkgbuilds/` | non-stow: patched AUR PKGBUILDs (nemo-preview + Wayland patch) |
 
 Usage (from the repo root, stow 2.4.1):
 
@@ -136,6 +138,18 @@ pair with the compositor-level editing shortcuts above.
 
 `ELECTRON_OZONE_PLATFORM_HINT=auto` (native Wayland for Electron apps when
 possible) and `TERMINAL=kitty`.
+
+### taildrop/ — incoming Taildrop receiver (2026-08-14)
+
+Taildrop is the AirDrop replacement here (LocalSend covers same-LAN GUI sends;
+it's in the package list). A systemd user unit runs
+`tailscale file get --loop --conflict=rename --verbose ~/Downloads` via the
+`taildrop-watch` wrapper, raising a notify-send per received file. Restart on
+failure rides out the pre-login window. Note: `sudo tailscale set
+--operator=$USER` had to be re-applied — the migration's "operator set" (E13)
+had not survived reality. Send to this machine from any tailnet device's
+Tailscale app (share sheet → Tailscale), or from here:
+`tailscale file send <node> <file>`.
 
 ### applications/ — desktop entries (E14)
 
