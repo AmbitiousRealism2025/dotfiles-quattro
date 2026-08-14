@@ -1,5 +1,13 @@
 # Taildrop app — project outline
 
+> **2026-08-14 addendum, same day:** this outline was overtaken by events.
+> Omarchy 4.0 ships a first-party `omarchy.tailscale` bar plugin — device
+> panel, per-peer send via `/usr/share/omarchy/bin/omarchy-tailscale-send`
+> (file picker → `tailscale file cp` → notifications). It is now enabled on
+> this bar (next to the network widget). The outline below survives as the
+> thinking for anything the plugin turns out not to cover; the GTK app is
+> probably dead unless a real gap appears.
+
 Outline for the Linux Taildrop GUI ("AirDrop for your tailnet"). Written
 2026-08-14 after shipping the Nemo right-click action; the action is the
 feature today, this is the app it could grow into.
