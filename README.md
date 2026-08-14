@@ -137,12 +137,19 @@ pair with the compositor-level editing shortcuts above.
 `ELECTRON_OZONE_PLATFORM_HINT=auto` (native Wayland for Electron apps when
 possible) and `TERMINAL=kitty`.
 
-### applications/ — web-app entries (E14)
+### applications/ — desktop entries (E14)
 
-Two desktop entries recreated with **verified real binary names**:
-`wallhaven-webapp.desktop` launches `zen-browser`, `keychron-launcher.desktop`
-launches `google-chrome-stable` (WebHID configurator — Chrome only, and it needs
-the Keychron udev rule from `reinstall.sh`).
+Three entries. `wallhaven-webapp.desktop` launches `zen-browser` and
+`keychron-launcher.desktop` launches `google-chrome-stable` (WebHID
+configurator — Chrome only, needs the Keychron udev rule from `reinstall.sh`),
+both with **verified real binary names**. `yazi.desktop` recreates the NixOS
+kitty-hosted launcher for the terminal file manager (`kitty --class yazi yazi`,
+per the playbook INVENTORY).
+
+GUI side, same day: **Nemo** (also from the NixOS inventory) replaced Nautilus
+as the `inode/directory` default. `nemo-preview` was deliberately left out —
+NixOS carried a Wayland patch for it (gdk_x11 foreign-window guard) and the AUR
+build is unpatched.
 
 ---
 

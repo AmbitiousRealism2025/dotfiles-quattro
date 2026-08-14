@@ -151,6 +151,7 @@ NATIVE_PACKAGES=(
   mpv-mpris
   nautilus
   nautilus-python
+  nemo
   neovim
   networkmanager
   nodejs
@@ -199,6 +200,7 @@ NATIVE_PACKAGES=(
   sof-firmware
   spotify
   starship
+  stow
   sudo
   sushi
   system-config-printer
