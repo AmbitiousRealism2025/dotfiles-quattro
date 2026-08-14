@@ -147,9 +147,10 @@ kitty-hosted launcher for the terminal file manager (`kitty --class yazi yazi`,
 per the playbook INVENTORY).
 
 GUI side, same day: **Nemo** (also from the NixOS inventory) replaced Nautilus
-as the `inode/directory` default. `nemo-preview` was deliberately left out —
-NixOS carried a Wayland patch for it (gdk_x11 foreign-window guard) and the AUR
-build is unpatched.
+as the `inode/directory` default. `nemo-preview` was added from the AUR the
+same day, on request — caveat: NixOS carried a Wayland patch for it (gdk_x11
+foreign-window guard) that the AUR build lacks, so if the space-bar preview
+misbehaves, that's the known gap.
 
 ---
 

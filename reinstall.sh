@@ -259,11 +259,11 @@ if confirm "1/6 Install ${#NATIVE_PACKAGES[@]} native packages?"; then
 fi
 
 # ---------------------------------------------------------------------------
-# 2. AUR (pacman -Qqem: the only two foreign packages).
+# 2. AUR (pacman -Qqem: the three foreign packages).
 #    NOTE: cursor-bin is NOT here — it comes from the [omarchy] repo above.
 # ---------------------------------------------------------------------------
-if confirm "2/6 Install AUR packages (google-chrome, zen-browser-bin) via yay?"; then
-  yay -S --needed google-chrome zen-browser-bin
+if confirm "2/6 Install AUR packages (google-chrome, zen-browser-bin, nemo-preview) via yay?"; then
+  yay -S --needed google-chrome zen-browser-bin nemo-preview
 fi
 
 # ---------------------------------------------------------------------------
