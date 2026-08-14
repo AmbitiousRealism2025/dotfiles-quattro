@@ -84,14 +84,12 @@ o.bind("SUPER + J", "Focus up", hl.dsp.focus({ direction = "u" }))
 o.bind("SUPER + K", "Focus down", hl.dsp.focus({ direction = "d" }))
 o.bind("SUPER + L", "Focus right", hl.dsp.focus({ direction = "r" }))
 
+-- Swap quartet completing the inverted-J/K pattern (SHIFT+J = up). Float/tiling
+-- toggle stays on the stock SUPER+T.
 o.bind("SUPER + SHIFT + H", "Move window left", hl.dsp.window.swap({ direction = "l" }))
+o.bind("SUPER + SHIFT + J", "Move window up", hl.dsp.window.swap({ direction = "u" }))
 o.bind("SUPER + SHIFT + K", "Move window down", hl.dsp.window.swap({ direction = "d" }))
 o.bind("SUPER + SHIFT + L", "Move window right", hl.dsp.window.swap({ direction = "r" }))
-
--- Tile/float toggle on SUPER+SHIFT+J (was "Move window up" from the original
--- port; SUPER+SHIFT+UP/DOWN still move windows vertically). SUPER+T also
--- toggles floating via the Omarchy default.
-o.bind("SUPER + SHIFT + J", "Toggle window floating/tiling", hl.dsp.window.float({ action = "toggle" }))
 
 -- Workspaces 1-9. Default SUPER+SHIFT+N moves AND follows; portabeast moves
 -- without following. (Default silent-move stays available on SUPER+SHIFT+ALT+N.)

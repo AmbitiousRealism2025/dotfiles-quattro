@@ -53,10 +53,10 @@ reload and all binds spot-checked via `omarchy menu keybindings --print`.
   "scaling down" survives on `SUPER+ALT+/`, and `SUPER+CTRL+D` (Display panel)
   covers scaling interactively. The menu's stock `SUPER+K` is unavailable — K is
   focus-down now.
-- **SUPER+SHIFT+J = tile/float toggle.** Took over "move window up" from the
-  first port; vertical moves still exist on `SUPER+SHIFT+UP/DOWN`. The other
-  swaps (SHIFT+H/K/L) keep their directional meanings. `SUPER+T` also floats
-  (stock).
+- **SUPER+SHIFT+J = move window up.** Completes the inverted-J/K swap quartet
+  (SHIFT+H/J/K/L = left/up/down/right). It briefly held a tile/float toggle
+  during the port; reverted same day on request — float stays on the stock
+  `SUPER+T`.
 - **Move-without-follow workspaces.** `SUPER+SHIFT+1–9` moves the window without
   following it, replacing the stock move-and-follow binds. The stock silent-move
   remains reachable on `SUPER+SHIFT+ALT+N`.
