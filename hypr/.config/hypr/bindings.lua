@@ -120,3 +120,4 @@ o.bind("SUPER + PRINT", "Screenshot window", "omarchy capture screenshot windows
 if o.cmd_present("voxtype") then
   o.bind("INSERT", "Toggle dictation", "voxtype record toggle")
 end
+
