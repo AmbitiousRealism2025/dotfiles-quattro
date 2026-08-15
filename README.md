@@ -21,6 +21,7 @@ One Stow package per concern, each mirroring `$HOME`:
 | `environment/` | `.config/environment.d/portabeast.conf` |
 | `applications/` | `.local/share/applications/{wallhaven-webapp,keychron-launcher,yazi}.desktop` |
 | `taildrop/` | `.config/systemd/user/taildrop.service`, `.local/bin/taildrop-watch` |
+| `herdr/` | `.config/herdr/config.toml` (config only — never session.json/logs/sockets) |
 | `pkgbuilds/` | non-stow: patched AUR PKGBUILDs (nemo-preview + Wayland patch) |
 
 Usage (from the repo root, stow 2.4.1):
@@ -138,6 +139,18 @@ pair with the compositor-level editing shortcuts above.
 
 `ELECTRON_OZONE_PLATFORM_HINT=auto` (native Wayland for Electron apps when
 possible) and `TERMINAL=kitty`.
+
+### herdr/ — session manager config (2026-08-14)
+
+`config.toml` is a full tmux-parity keymap written natively for quattro (it
+mirrors the Omarchy tmux config: tmux session→workspace, window→tab, pane→pane;
+follow-cwd splits, mouse capture, no confirm-on-close). Prefix is **alt+b** —
+switched to match the NixOS side after ctrl+space proved awkward. Four settings
+ported from the Samsung's config after confirming both sides run herdr 0.8.0:
+`onboarding=false`, `theme.auto_switch=false`, `ui.toast.delivery="system"`,
+`ui.show_agent_labels_on_pane_borders=true` (agent names on pane borders).
+Deliberately NOT staged: `session.json` (live session state) and the
+logs/sockets — same rule as the playbook's Phase-5 copy list.
 
 ### taildrop/ — Taildrop send + receive (2026-08-14)
 
