@@ -7,9 +7,9 @@
           "id": "omarchy.indicators"
         },
         {
-          "format": "dddd HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
           "id": "omarchy.clock",
+          "format": "dddd h:mm AP",
+          "formatAlt": "d MMMM 'W'ww yyyy",
           "verticalFormat": "HH\n—\nmm"
         },
         {
@@ -17,6 +17,12 @@
         },
         {
           "id": "omarchy.weather"
+        },
+        {
+          "id": "taildrop"
+        },
+        {
+          "id": "stappmus.udder"
         },
         {
           "id": "maduki-tech.omado"
@@ -31,6 +37,9 @@
         },
         {
           "id": "omarchy.workspaces"
+        },
+        {
+          "id": "dev.deoxizn.keybind-manager"
         },
         {
           "id": "omarchy.active-window"
@@ -67,9 +76,22 @@
     "transparent": false
   },
   "idle": {
-    "lock": 31536000,
-    "screensaver": 31536000
+    "lock": 900,
+    "screensaver": 300
   },
-  "plugins": [],
+  "plugins": [
+    {
+      "id": "mirador"
+    },
+    {
+      "id": "omni"
+    },
+    {
+      "id": "quickapps-hud"
+    },
+    {
+      "id": "cliamp"
+    }
+  ],
   "version": 1
 }

@@ -121,3 +121,24 @@ if o.cmd_present("voxtype") then
   o.bind("INSERT", "Toggle dictation", "voxtype record toggle")
 end
 
+
+-- Workspace overview (Mirador plugin): fullscreen workspaces+windows view,
+-- keyboard navigation, drag windows between workspaces. SHIFT+TAB toggles it.
+o.bind(
+  "SHIFT + TAB",
+  "Workspace overview",
+  "omarchy-shell shell summon mirador '{}'"
+)
+
+-- Omni command palette (bjarneo plugin): apps, Omarchy actions, files, themes,
+-- GitHub search, tldr, Ollama prompts. ALT+SPACE toggles it.
+hl.unbind("ALT + SPACE")
+hl.bind("ALT + SPACE", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']]), { description = "Omni" })
+
+-- QuickApps HUD (bjarneo plugin): Iron Man-style quick app ring.
+hl.bind("SUPER + A", hl.dsp.exec_cmd([[omarchy-shell shell toggle quickapps-hud '{}']]), { description = "QuickApps HUD" })
+
+-- >>> keybind-manager begin (managed by dev.deoxizn.keybind-manager; edit the plugin, not this block)
+o.bind("SUPER+ALT+PRINT", "Screen record", "omarchy-capture-screenrecording")
+-- <<< keybind-manager end
+

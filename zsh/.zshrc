@@ -39,3 +39,10 @@ export BAT_THEME=ansi
 
 # open() wrapper (mirrors the NixOS-side function)
 open() { xdg-open "$@" }
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/ambitiousrealism/.local/bin:$PATH"
+
+# Gemini lane (agy on the Google AI Ultra subscription)
+[ -r /home/ambitiousrealism/.config/zsh/gemini-lane.zsh ] && source /home/ambitiousrealism/.config/zsh/gemini-lane.zsh

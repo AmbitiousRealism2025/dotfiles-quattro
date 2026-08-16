@@ -1,0 +1,16 @@
+{
+  "apps": [
+    { "name": "ZEN", "icon": "zen", "exec": "/opt/zen-browser-bin/zen-bin", "comment": "default browser" },
+    { "name": "TERM", "icon": "terminal", "exec": "alacritty", "comment": "alacritty" },
+    { "name": "GOOEYPI", "icon": "gooeypi", "exec": "gooeypi", "comment": "Pi GUI workspace" },
+    { "name": "HERDR", "icon": "terminal", "exec": "alacritty -e herdr", "comment": "agent herd" },
+    { "name": "DISCORD", "icon": "discord", "exec": "discord", "comment": "chat" },
+    { "name": "SIGNAL", "icon": "signal", "exec": "signal-desktop", "comment": "secure chat" },
+    { "name": "SPOTIFY", "icon": "spotify", "exec": "spotify", "comment": "music" },
+    { "name": "OBSIDIAN", "icon": "obsidian", "exec": "obsidian", "comment": "notes" },
+    { "name": "OBS", "icon": "obs", "exec": "obs", "comment": "recording" },
+    { "name": "FILES", "icon": "nemo", "exec": "nemo", "comment": "file manager" },
+    { "name": "CLAMP", "icon": "audio-player", "exec": "cliamp", "comment": "music player" },
+    { "name": "SETTINGS", "icon": "settings", "exec": "omarchy setup first-run", "comment": "omarchy setup" }
+  ]
+}

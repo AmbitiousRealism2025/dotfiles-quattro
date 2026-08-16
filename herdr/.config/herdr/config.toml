@@ -6,7 +6,7 @@ onboarding = false
 
 [theme]
 # tmux ran on the terminal's own palette (bg=default, fg=default, ANSI blue accents)
-name = "terminal"
+name = "tokyo-night-day"
 auto_switch = false
 
 [theme.custom]
@@ -103,5 +103,6 @@ tab_bar_right = [{ type = "zoom" }, { type = "hostname" }]
 window_title = "{hostname}: {workspace}"
 
 # From the NixOS side: toasts route to system notifications.
+status_indicators = "dots"
 [ui.toast]
 delivery = "system"
