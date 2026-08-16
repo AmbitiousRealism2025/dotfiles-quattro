@@ -102,3 +102,10 @@ Ported from NixOS voxtype.nix, same machine, same verdicts.
   Omarchy defaults SUPER+CTRL+X toggle and F9 push-to-talk also now active.
 - Daemon: systemctl --user voxtype, enabled. Verified: 1.4s clip transcribed
   in 0.06s via the same IPC path INSERT uses.
+
+### Housekeeping (same night)
+
+- bjarneo omarchy-shell-plugins clone moved /tmp → ~/coding-projects/omarchy-shell-plugins
+  (survives reboot; `git pull` + re-copy per plugin to update).
+- README: Layout table updated (input.lua, quickapps apps.json, voxtype pkg),
+  ledger section now points here.

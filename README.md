@@ -14,8 +14,9 @@ One Stow package per concern, each mirroring `$HOME`:
 
 | Package | Contents |
 |---|---|
-| `hypr/` | `.config/hypr/{bindings,monitors,looknfeel}.lua` |
-| `omarchy/` | `.config/omarchy/shell.json`, `.config/omarchy/themes/graphene/` (colors + backgrounds) |
+| `hypr/` | `.config/hypr/{bindings,monitors,looknfeel,input}.lua` |
+| `omarchy/` | `.config/omarchy/shell.json`, `.config/omarchy/themes/graphene/`, `.config/omarchy-quickapps-hud/apps.json` |
+| `voxtype/` | `.config/voxtype/config.toml` (parakeet dictation, Insert toggle) |
 | `zsh/` | `.zshrc`, `.config/zsh/{starship,zoxide}-init.zsh` |
 | `kitty/` | `.config/kitty/kitty.conf` |
 | `environment/` | `.config/environment.d/portabeast.conf` |
@@ -38,6 +39,10 @@ executed** — review before running anything from it.
 ---
 
 ## The ledger — what diverges from stock Omarchy, and why
+
+Post-migration changes live in [CHANGES.md](CHANGES.md) — dated, append-only,
+covers plugin installs, gotchas, and anything git blame can't explain. This
+ledger stays the migration-era reference.
 
 ### hypr/bindings.lua — the portabeast keymap (E1, E21)
 
