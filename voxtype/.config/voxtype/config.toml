@@ -1,0 +1,52 @@
+# Voxtype config — ported from NixOS nix-flake voxtype.nix (2026-08-15)
+# Parakeet v2 int8, CPU, keep-warm. Benchmark verdict from NixOS:
+# 12.3s of speech transcribed in 0.33s, accurate.
+
+state_file = "auto"
+engine = "parakeet"
+
+[hotkey]
+# Hyprland owns the bare Insert binding (toggle).
+enabled = false
+
+[audio]
+device = "default"
+sample_rate = 16000
+max_duration_secs = 60
+
+[osd]
+# Omarchy notifications provide status feedback; no second OSD layer.
+enabled = false
+
+[parakeet]
+model = "/home/ambitiousrealism/.local/share/voxtype/models/parakeet-tdt-0.6b-v2-int8"
+model_type = "tdt"
+on_demand_loading = false
+
+[text]
+[text.replacements]
+"nix os" = "NixOS"
+"hypr land" = "Hyprland"
+"u w s m" = "UWSM"
+"d m s" = "DMS"
+"vox type" = "Voxtype"
+"amarchi" = "Omarchy"
+"casio us" = "CachyOS"
+"cashy os" = "CachyOS"
+"t 1200" = "T1200"
+"twelve hundred" = "T1200"
+"one password" = "1Password"
+"open code" = "OpenCode"
+"t three code" = "T3 Code"
+
+[output]
+mode = "type"
+fallback_to_clipboard = true
+driver_order = ["wtype", "clipboard"]
+type_delay_ms = 0
+pre_type_delay_ms = 0
+
+[output.notification]
+on_recording_start = true
+on_recording_stop = true
+on_transcription = true

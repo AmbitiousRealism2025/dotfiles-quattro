@@ -81,3 +81,24 @@ setup (settings export, pinned apps, per-surface screenshots) → grill session
 to fill blanks → Master Plan → build. Vision lane for reference screenshots is
 working: `pi --model zai/glm-4.6v` (registered in models.json, Albion Max plan)
 and `codex exec -i <img>` for the sharp second opinion.
+
+## 2026-08-15 (late) — Voxtype dictation
+
+Ported from NixOS voxtype.nix, same machine, same verdicts.
+
+- Package: omarchy/voxtype-bin 0.7.5 + wtype. NOTE: default binary is
+  whisper-only; parakeet needs `sudo voxtype setup onnx --enable`, which
+  repoints /usr/bin/voxtype at /usr/lib/voxtype/voxtype-onnx-* (it auto-picked
+  CUDA-13 for the T1200; NixOS ran CPU int8, this is faster).
+- Model: parakeet-tdt-0.6b-v2 int8, the four files from
+  istupakov/parakeet-tdt-0.6b-v2-onnx, sha256-verified against the NixOS pins,
+  at ~/.local/share/voxtype/models/parakeet-tdt-0.6b-v2-int8/ (not in repo;
+  re-fetch with the hashes in nix-flake voxtype.nix).
+- Config: voxtype/.config/voxtype/config.toml (tracked) — parakeet engine,
+  keep-warm, wtype typing at 0ms, notifications on, OSD off, NixOS word
+  replacements preserved.
+- Keybind: bare INSERT toggle — the dormant cmd_present-guarded bind already
+  in bindings.lua (playbook D2) went live when the package installed.
+  Omarchy defaults SUPER+CTRL+X toggle and F9 push-to-talk also now active.
+- Daemon: systemctl --user voxtype, enabled. Verified: 1.4s clip transcribed
+  in 0.06s via the same IPC path INSERT uses.
