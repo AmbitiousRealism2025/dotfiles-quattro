@@ -67,3 +67,17 @@ below). Config files that changed ARE tracked here.
 - zsh: gemini-lane helpers source line (~/.config/zsh/gemini-lane.zsh — not
   tracked, agy/Antigravity CLI tooling, see canon-candidates entry 12).
 - herdr config.toml: keybind-manager related tweak (see git diff for exact).
+
+### Deferred: NixOS dock + right bar recreation
+
+Tried rosakodu/omarchy-dock (AUR of the ecosystem): installed, hit two author
+refactor bugs (Component.onCompleted calling deleted functions), patched, then
+removed — icon resolution too janky. Decision: build our own as an omarchy
+plugin, from scratch. Backburnered 2026-08-15.
+
+Resume plan: boot NixOS (Sabrent drive, nix-flake has DMS enabled via systemd
+service) → agent over there writes a detailed report of the Dank Material Shell
+setup (settings export, pinned apps, per-surface screenshots) → grill session
+to fill blanks → Master Plan → build. Vision lane for reference screenshots is
+working: `pi --model zai/glm-4.6v` (registered in models.json, Albion Max plan)
+and `codex exec -i <img>` for the sharp second opinion.
