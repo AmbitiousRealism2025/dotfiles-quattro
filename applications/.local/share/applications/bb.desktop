@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=bb
+Comment=The agent IDE that builds itself (get-bb/bb)
+Exec=/home/ambitiousrealism/Applications/bb-0.38.0-x86_64.AppImage --no-sandbox %U
+Terminal=false
+Type=Application
+Icon=bb
+StartupWMClass=bb
+Categories=Development;
+X-AppImage-Version=0.38.0

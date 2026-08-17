@@ -109,3 +109,17 @@ Ported from NixOS voxtype.nix, same machine, same verdicts.
   (survives reboot; `git pull` + re-copy per plugin to update).
 - README: Layout table updated (input.lua, quickapps apps.json, voxtype pkg),
   ledger section now points here.
+
+## 2026-08-17 — bb desktop (agent IDE, AppImage)
+
+- App: github.com/get-bb/bb "The agent IDE that builds itself". Verified
+  legit before install: release desktop-v0.38.0 is official, asset size
+  byte-matches the download (202770853). Desktop shell is GooeyPi-derived
+  (stale gooeypi 1.1.10 package.json inside the asar) but connects to a bb
+  server — separate product from local GooeyPi.
+- Install: AppImage at ~/Applications/bb-0.38.0-x86_64.AppImage, icon at
+  ~/.local/share/icons/bb.png, desktop entry tracked in applications/
+  (bb.desktop). AppImage + icon NOT in repo — re-download from releases.
+- Gotcha: AppImages need fuse2 (libfuse.so.2); not in a default Omarchy
+  install. `sudo pacman -S fuse2` fixes "dlopen(): error loading libfuse.so.2".
+- Launches with --no-sandbox (per upstream desktop entry).
