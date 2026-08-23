@@ -1,0 +1,25 @@
+# Operating system
+NAME="Omarchy"
+PRETTY_NAME="Omarchy"
+ID=omarchy
+ID_LIKE=arch
+BUILD_ID="4.0.0"
+VERSION_ID="4.0.0"
+ANSI_COLOR="38;2;158;206;106"
+HOME_URL="https://omarchy.org/"
+DOCUMENTATION_URL="https://learn.omacom.io/2/the-omarchy-manual"
+SUPPORT_URL="https://discord.gg/tXFUdasqhY"
+BUG_REPORT_URL="https://github.com/basecamp/omarchy/issues"
+LOGO=omarchy
+
+# Kernel
+Linux omarchy 7.1.8-arch1-3 #1 SMP PREEMPT_DYNAMIC Tue, 11 Aug 2026 09:16:08 +0000 x86_64 GNU/Linux
+
+# Host summary (intentionally excludes machine and boot IDs)
+omarchy
+
+# Omarchy
+4.0.0-1
+Channel: stable
+
+# Failed system units at capture time

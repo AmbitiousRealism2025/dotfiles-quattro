@@ -28,13 +28,16 @@ One Stow package per concern, each mirroring `$HOME`:
 Usage (from the repo root, stow 2.4.1):
 
 ```sh
-stow -S -t ~ hypr omarchy zsh kitty environment applications   # deploy
-stow -D -t ~ hypr omarchy zsh kitty environment applications   # withdraw
+stow -S -t ~ hypr omarchy zsh kitty environment applications taildrop herdr voxtype   # deploy
+stow -D -t ~ hypr omarchy zsh kitty environment applications taildrop herdr voxtype   # withdraw
 ```
 
-`reinstall.sh` is the bare-metal companion: package lists, flatpak remotes, the
-NVIDIA driver script reference, and root-owned files. **It has never been
-executed** — review before running anything from it.
+`reinstall.sh` is the confirmation-gated bare-metal companion: package lists,
+Flatpak remotes, the NVIDIA driver script reference, and root-owned files.
+`capture-inventory.sh` refreshes the generated package and hardware snapshot in
+`packages/`, `inventory/`, and the allow-listed files under `system/`.
+**Neither script should be run blindly on a different machine.** See
+[MIRRORING.md](MIRRORING.md) for the restore workflow.
 
 ---
 
@@ -78,8 +81,8 @@ reload and all binds spot-checked via `omarchy menu keybindings --print`.
   terminals, so bare ALT+C never becomes SIGINT). Kitty's own
   `shift+alt+c/v` maps are deliberately left to kitty: binding them here would
   let the compositor consume the keypress first.
-- **INSERT → dictation** is wired but dormant, guarded by `cmd_present("voxtype")`
-  until voxtype is installed (migration pending item 11).
+- **INSERT → dictation** is wired and guarded by `cmd_present("voxtype")`;
+  the current machine has `voxtype-bin` installed and `voxtype.service` enabled.
 
 Already covered by stock defaults and left alone: SUPER+SPACE, SUPER+RETURN /
 SUPER+SHIFT+RETURN, SUPER+TAB, ALT+TAB, SUPER+drag & mouse-wheel, XF86
@@ -87,28 +90,27 @@ audio/brightness, SUPER+CTRL+V/SPACE/L, SUPER+ESCAPE, SUPER+T, SUPER+P.
 
 ### hypr/monitors.lua — panel + dock (E2, E16)
 
-- **eDP-1**: 2560x1600@60.03, **scale 1.6**, positioned right of the external
-  monitor. `GDK_SCALE=1` on purpose: Hyprland handles the fractional scale
-  natively, and an integer `GDK_SCALE=2` would make X11/GTK2 apps render doubled.
-- **LG ULTRAGEAR** pinned by monitor description
-  `desc:LG Electronics LG ULTRAGEAR 301MXUN23894` at 2560x1440@**143.93**, scale 1.
-  The description string was harvested from the NixOS config on the Samsung;
-  the entry is dormant until the dock is connected — **pending item 3: confirm
-  143.93 engages and eDP-1 sits right of it on first dock.**
+- **eDP-1**: 2560x1600@60.03000, **scale 1.6**, currently positioned at `auto`.
+  `GDK_SCALE=1` is intentional: Hyprland handles the fractional scale natively,
+  and an integer `GDK_SCALE=2` would make X11/GTK2 apps render doubled.
+- The configuration retains the docked **LG ULTRAGEAR** rule at
+  2560x1440@**143.93**, scale 1, plus an HDMI-A-1 rule at 2560x1440@119.998,
+  scale 1.25. The latest inventory observed only eDP-1; the external rules are
+  therefore hardware-dependent and dormant until those outputs are connected.
 
 ### hypr/looknfeel.lua — the portabeast look (E3)
 
-Dwindle layout, gaps 4/4, border 2, rounding 10, active 1.0 / inactive 0.95
+Dwindle layout, gaps 8/16, border 1, rounding 10, active 1.0 / inactive 0.95
 opacity, blur size 4 / passes 2. Border colors are **not** hardcoded — they come
 from the active Graphene theme.
 
 ### omarchy/shell.json — bar + idle (E5)
 
-- Bar gains `omarchy.active-window` in the left section (after workspaces).
-- **Idle lock and screensaver are both 31536000 (one year), not 0.** In the
-  Omarchy shell's idle model (IdleModel.js / Service.qml), `0` means
-  *instant lock*, not "disabled" — so "effectively off" must be a huge value.
-  Stock was lock 300 / screensaver 150.
+- The bar uses the local `ambitiousrealism.workspaces` and
+  `ambitiousrealism.active-window` clones, plus Omapods, the activity monitor,
+  display controls, and the Botmarchy muster widget.
+- Current idle values are **lock 900 / screensaver 300**. The stock idle plugin
+  is disabled in favor of the local clone `ambitiousrealism.idle`.
 
 ### omarchy/themes/graphene/ — the theme (E4, E16, E17)
 

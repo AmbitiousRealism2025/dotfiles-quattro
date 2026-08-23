@@ -4,9 +4,9 @@
 
 hl.config({
   general = {
-    gaps_in = 4,
-    gaps_out = 4,
-    border_size = 2,
+    gaps_in = 8,
+    gaps_out = 16,
+    border_size = 1,
     layout = "dwindle",
   },
 })
@@ -14,7 +14,7 @@ hl.config({
 hl.config({
   decoration = {
     rounding = 10,
-    active_opacity = 1.0,
+    active_opacity = 1.00,
     inactive_opacity = 0.95,
     blur = {
       enabled = true,

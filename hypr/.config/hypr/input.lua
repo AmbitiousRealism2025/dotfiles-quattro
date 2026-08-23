@@ -57,7 +57,7 @@
 -- hl.gesture({ fingers = 3, direction = "right", action = function() hl.dispatch(hl.dsp.focus({ direction = "r" })) end })
 
 -- Mirador workspace overview gestures: three-finger swipe up opens it,
--- three-finger swipe down closes it (same as SHIFT+TAB).
+-- three-finger swipe down closes it (same as SUPER+SHIFT+TAB).
 hl.gesture({
   fingers = 3,
   direction = "up",

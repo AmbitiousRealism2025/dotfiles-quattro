@@ -1,0 +1,12 @@
+bt-agent.service
+librepods.service
+omarchy-crash-watch.service
+omarchy-fcitx5.service
+omarchy-migrate-notify.service
+omarchy-recover-internal-monitor.service
+omarchy-sleep-lock.service
+pipewire-pulse.service
+taildrop.service
+voxtype.service
+wireplumber.service
+xdg-user-dirs.service

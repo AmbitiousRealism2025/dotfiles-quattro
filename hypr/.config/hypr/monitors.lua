@@ -20,4 +20,6 @@ hl.monitor({ output = "desc:LG Electronics LG ULTRAGEAR 301MXUN23894", mode = "2
 -- Laptop panel, right of the LG.
 -- While undocked, position "2560x0" just offsets the origin with no LG present;
 -- set it back to "auto" if that bothers you before the first dock.
-hl.monitor({ output = "eDP-1", mode = "2560x1600@60.03", position = "2560x0", scale = 1.6 })
+hl.monitor({ output = "eDP-1", mode = "2560x1600@60.03000", position = "auto", scale = 1.6, transform = 0 })
+
+hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@119.99800", position = "1600x0", scale = 1.25, transform = 0 })

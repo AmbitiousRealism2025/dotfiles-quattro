@@ -1,0 +1,3 @@
+4.0.0-1
+Channel: stable
+Command metadata check passed (421 commands)

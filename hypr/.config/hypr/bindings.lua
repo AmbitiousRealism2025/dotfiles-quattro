@@ -123,20 +123,39 @@ end
 
 
 -- Workspace overview (Mirador plugin): fullscreen workspaces+windows view,
--- keyboard navigation, drag windows between workspaces. SHIFT+TAB toggles it.
+-- keyboard navigation, drag windows between workspaces. This replaces the
+-- default previous-workspace binding and leaves SHIFT+TAB free for applications.
+hl.unbind("SHIFT + TAB")
+hl.unbind("SUPER + SHIFT + TAB")
 o.bind(
-  "SHIFT + TAB",
+  "SUPER + SHIFT + TAB",
   "Workspace overview",
   "omarchy-shell shell summon mirador '{}'"
 )
 
 -- Omni command palette (bjarneo plugin): apps, Omarchy actions, files, themes,
--- GitHub search, tldr, Ollama prompts. ALT+SPACE toggles it.
+-- GitHub search, tldr, Ollama prompts. ALT+SPACE toggles it; SUPER+TAB opens it
+-- too (replaces the default "next workspace" cycle — that stays on SUPER+CTRL+TAB
+-- as "former workspace" and the wheel). Added 2026-08-22.
 hl.unbind("ALT + SPACE")
 hl.bind("ALT + SPACE", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']]), { description = "Omni" })
+hl.unbind("SUPER + TAB")
+hl.bind("SUPER + TAB", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']]), { description = "Omni" })
 
 -- QuickApps HUD (bjarneo plugin): Iron Man-style quick app ring.
 hl.bind("SUPER + A", hl.dsp.exec_cmd([[omarchy-shell shell toggle quickapps-hud '{}']]), { description = "QuickApps HUD" })
+
+-- Omatheme theme designer (Davies-Sam plugin): live editing of the running
+-- Quattro theme's borders, chrome, palette and backgrounds, plus theme
+-- fork/publish. Floats via a title rule in hyprland.lua (all Quickshell
+-- surfaces share the org.quickshell class, so the rule matches on title).
+o.bind("SUPER + SHIFT + CTRL + T", "Theme designer", "omarchy-shell shell toggle davies-sam.omatheme '{}'")
+
+-- Kitty is the default terminal (SUPER+RETURN via xdg-terminal-exec).
+-- Warp is available here as the secondary terminal.
+hl.unbind("SUPER + E")
+hl.unbind("SUPER + ALT + RETURN")
+o.bind("SUPER + ALT + RETURN", "Warp terminal", { launch = "warp-terminal" })
 
 -- >>> keybind-manager begin (managed by dev.deoxizn.keybind-manager; edit the plugin, not this block)
 o.bind("SUPER+ALT+PRINT", "Screen record", "omarchy-capture-screenrecording")

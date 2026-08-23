@@ -15,3 +15,13 @@ pkgbuilds/*/.git/
 
 # makepkg git-source cache (bare clone of nemo-extensions)
 pkgbuilds/*/nemo-extensions/
+
+# Local credentials and machine state. Keep inventories/configuration curated.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.kdbx
+credentials*
+secrets/

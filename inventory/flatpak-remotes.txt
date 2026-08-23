@@ -1,0 +1,3 @@
+GeForceNOW	https://international.download.nvidia.com/GFNLinux/flatpak/geforcenow_repo	user
+flathub	https://dl.flathub.org/repo/	system
+flathub	https://dl.flathub.org/repo/	user

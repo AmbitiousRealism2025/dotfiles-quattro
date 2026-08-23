@@ -46,3 +46,6 @@ export PATH="/home/ambitiousrealism/.local/bin:$PATH"
 
 # Gemini lane (agy on the Google AI Ultra subscription)
 [ -r /home/ambitiousrealism/.config/zsh/gemini-lane.zsh ] && source /home/ambitiousrealism/.config/zsh/gemini-lane.zsh
+
+. "$HOME/.local/share/../bin/env"
+export PATH="$HOME/.local/bin:$PATH"

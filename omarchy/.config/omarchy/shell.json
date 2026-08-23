@@ -7,9 +7,9 @@
           "id": "omarchy.indicators"
         },
         {
-          "id": "omarchy.clock",
           "format": "dddd h:mm AP",
           "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
           "verticalFormat": "HH\n—\nmm"
         },
         {
@@ -36,13 +36,17 @@
           "id": "omarchy.menu"
         },
         {
-          "id": "omarchy.workspaces"
+          "id": "ambitiousrealism.workspaces"
         },
         {
           "id": "dev.deoxizn.keybind-manager"
         },
         {
-          "id": "omarchy.active-window"
+          "aliases": {
+            "TUI.tile": "herdr",
+            "chatgpt": "Codex"
+          },
+          "id": "ambitiousrealism.active-window"
         }
       ],
       "right": [
@@ -50,7 +54,12 @@
           "id": "omarchy.tray"
         },
         {
-          "id": "stappmus.activity-monitor"
+          "id": "io.github.thisisgm.omapods"
+        },
+        {
+          "id": "stappmus.activity-monitor",
+          "temperatureUnit": "Celsius",
+          "openExpanded": true
         },
         {
           "id": "omarchy.tailscale"
@@ -68,10 +77,15 @@
           "id": "omarchy.audio"
         },
         {
-          "id": "omarchy.monitor"
+          "id": "better.displays"
         },
         {
           "id": "omarchy.power"
+        },
+        {
+          "id": "dev.botmarchy.muster",
+          "sshTarget": "ambitiousrealism@omarchy-1.tail9106ac.ts.net",
+          "intervalSec": "10"
         }
       ]
     },
@@ -94,7 +108,22 @@
     },
     {
       "id": "cliamp"
+    },
+    {
+      "id": "davies-sam.omatheme"
+    },
+    {
+      "id": "dev.botmarchy.muster"
+    },
+    {
+      "id": "ambitiousrealism.idle"
     }
   ],
-  "version": 1
+  "version": 1,
+  "disabledPlugins": [
+    "omarchy.idle"
+  ],
+  "cloneSourceRestores": [
+    "ambitiousrealism.idle"
+  ]
 }

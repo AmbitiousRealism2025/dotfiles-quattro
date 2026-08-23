@@ -1,0 +1,5 @@
+antigravity-ide
+gooeypi
+google-chrome
+herdr-workspace-manager
+zen-browser-bin
