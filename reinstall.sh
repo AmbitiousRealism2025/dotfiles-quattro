@@ -368,15 +368,14 @@ fi
 
 # ---------------------------------------------------------------------------
 # 6. Dotfiles — this repo. From a clone:
-#      stow -S -t ~ hypr omarchy zsh kitty environment applications \
-#        taildrop herdr voxtype
-#    Then reload Hyprland and check: hyprctl reload && hyprctl configerrors
+#      ./deploy-dotfiles.sh
+#    It backs up regular conflicts before stowing. Then reload Hyprland and
+#    check: hyprctl reload && hyprctl configerrors
 #    (must print nothing).
 # ---------------------------------------------------------------------------
 if confirm "6/6 Stow the dotfiles from this repo (~/dotfiles-quattro)?"; then
-  cd "$(dirname "$0")"
-  stow -S -t ~ hypr omarchy zsh kitty environment applications \
-    taildrop herdr voxtype
+  cd "$SCRIPT_DIR"
+  ./deploy-dotfiles.sh
   hyprctl reload
   hyprctl configerrors
 fi

@@ -38,8 +38,7 @@ while read -r app; do
   flatpak install -y flathub "$app"
 done < packages/flatpak-apps.txt
 
-stow -S -t ~ hypr omarchy zsh kitty environment applications \
-  taildrop herdr voxtype
+./deploy-dotfiles.sh
 ```
 
 Then install only the root-owned rules that apply to the target machine and

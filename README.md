@@ -28,9 +28,13 @@ One Stow package per concern, each mirroring `$HOME`:
 Usage (from the repo root, stow 2.4.1):
 
 ```sh
-stow -S -t ~ hypr omarchy zsh kitty environment applications taildrop herdr voxtype   # deploy
+./deploy-dotfiles.sh       # backs up regular conflicts, then deploys
 stow -D -t ~ hypr omarchy zsh kitty environment applications taildrop herdr voxtype   # withdraw
 ```
+
+`deploy-dotfiles.sh` is preferable on an existing Omarchy install because
+stock files may already occupy the target paths. Backups go under
+`~/.local/state/dotfiles-quattro/backups/`.
 
 `reinstall.sh` is the confirmation-gated bare-metal companion: package lists,
 Flatpak remotes, the NVIDIA driver script reference, and root-owned files.
