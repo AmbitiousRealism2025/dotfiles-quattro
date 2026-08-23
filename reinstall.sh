@@ -15,6 +15,8 @@
 
 set -euo pipefail
 
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+
 confirm() {
   local ans
   read -rp "== $1 [y/N] " ans
@@ -254,16 +256,31 @@ NATIVE_PACKAGES=(
   zsh-syntax-highlighting
 )
 
-if confirm "1/6 Install ${#NATIVE_PACKAGES[@]} native packages?"; then
-  sudo pacman -S --needed "${NATIVE_PACKAGES[@]}"
+# Prefer the current captured manifests. The inline arrays above remain a
+# migration-era fallback for a copy made before capture-inventory.sh existed.
+if [[ -s "$SCRIPT_DIR/packages/pacman-explicit.txt" ]]; then
+  NATIVE_COUNT=$(wc -l < "$SCRIPT_DIR/packages/pacman-explicit.txt")
+  if confirm "1/6 Install $NATIVE_COUNT native packages from packages/pacman-explicit.txt? Review for target hardware first."; then
+    sudo pacman -S --needed - < "$SCRIPT_DIR/packages/pacman-explicit.txt"
+  fi
+else
+  if confirm "1/6 Install ${#NATIVE_PACKAGES[@]} native packages?"; then
+    sudo pacman -S --needed "${NATIVE_PACKAGES[@]}"
+  fi
 fi
 
 # ---------------------------------------------------------------------------
-# 2. AUR (pacman -Qqem: the three foreign packages).
-#    NOTE: cursor-bin is NOT here — it comes from the [omarchy] repo above.
+# 2. AUR (current package names come from packages/aur-explicit.txt).
 # ---------------------------------------------------------------------------
-if confirm "2/6 Install AUR packages (google-chrome, zen-browser-bin, nemo-preview) via yay?"; then
-  yay -S --needed google-chrome zen-browser-bin nemo-preview
+if [[ -s "$SCRIPT_DIR/packages/aur-explicit.txt" ]]; then
+  AUR_COUNT=$(wc -l < "$SCRIPT_DIR/packages/aur-explicit.txt")
+  if confirm "2/6 Install $AUR_COUNT AUR packages from packages/aur-explicit.txt?"; then
+    yay -S --needed - < "$SCRIPT_DIR/packages/aur-explicit.txt"
+  fi
+else
+  if confirm "2/6 Install legacy AUR packages (google-chrome, zen-browser-bin, nemo-preview) via yay?"; then
+    yay -S --needed google-chrome zen-browser-bin nemo-preview
+  fi
 fi
 
 # ---------------------------------------------------------------------------
