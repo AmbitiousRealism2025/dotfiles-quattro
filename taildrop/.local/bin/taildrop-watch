@@ -11,7 +11,7 @@ mkdir -p "$DEST"
 tailscale file get --loop --conflict=rename --verbose "$DEST" | while IFS= read -r line; do
   # Skip the quiet startup/status lines; only announce actual deliveries.
   case "$line" in
-    *in:*|*.partial*|*"") continue ;;
+    *in:*|*.partial*|"") continue ;;
   esac
   notify-send -a Taildrop -i document-save "Taildrop received" "$line" 2>/dev/null || true
 done
