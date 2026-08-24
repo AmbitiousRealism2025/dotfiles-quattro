@@ -161,3 +161,21 @@ o.bind("SUPER + ALT + RETURN", "Warp terminal", { launch = "warp-terminal" })
 o.bind("SUPER+ALT+PRINT", "Screen record", "omarchy-capture-screenrecording")
 -- <<< keybind-manager end
 
+-- Move only the focused window between the stacked monitors.
+-- The default binding moves the entire workspace instead.
+-- The simpler Super+Alt+Up/Down pair replaces group movement, since this
+-- session uses scrolling tiled mode rather than window groups.
+hl.unbind("SUPER + SHIFT + ALT + UP")
+hl.unbind("SUPER + SHIFT + ALT + DOWN")
+hl.unbind("SUPER + ALT + UP")
+hl.unbind("SUPER + ALT + DOWN")
+o.bind("SUPER + SHIFT + ALT + UP", "Move window to group on top", hl.dsp.window.move({ into_group = "u" }))
+o.bind("SUPER + SHIFT + ALT + DOWN", "Move window to group on bottom", hl.dsp.window.move({ into_group = "d" }))
+o.bind("SUPER + ALT + UP", "Move window to HDMI monitor (easy)", hl.dsp.exec_cmd([[hyprctl dispatch 'hl.dsp.window.move({ monitor = "HDMI-A-1" })']]))
+o.bind("SUPER + ALT + DOWN", "Move window to DP monitor (easy)", hl.dsp.exec_cmd([[hyprctl dispatch 'hl.dsp.window.move({ monitor = "DP-2" })']]))
+
+-- Switch focus between monitors with Super+Backslash.
+hl.unbind("CTRL + ALT + TAB")
+hl.unbind("SUPER + BACKSLASH")
+o.bind("SUPER + BACKSLASH", "Focus on next monitor", hl.dsp.focus({ monitor = "+1" }))
+

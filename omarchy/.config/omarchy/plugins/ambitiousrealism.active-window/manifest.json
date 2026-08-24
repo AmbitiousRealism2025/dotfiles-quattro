@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "ambitiousrealism.active-window",
+  "name": "My Active window",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Apps open on each monitor's active workspace",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "ActiveWindow.qml"
+  },
+  "barWidget": {
+    "displayName": "My Active window",
+    "description": "Apps open on each monitor's active workspace",
+    "category": "Compositor",
+    "allowMultiple": false,
+    "defaultSection": "left"
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.active-window"
+  }
+}

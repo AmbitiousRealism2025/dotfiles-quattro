@@ -22,4 +22,4 @@ hl.monitor({ output = "desc:LG Electronics LG ULTRAGEAR 301MXUN23894", mode = "2
 -- set it back to "auto" if that bothers you before the first dock.
 hl.monitor({ output = "eDP-1", mode = "2560x1600@60.03000", position = "auto", scale = 1.6, transform = 0 })
 
-hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@119.99800", position = "1600x0", scale = 1.25, transform = 0 })
+hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60.00000", position = "320x-1080", scale = 1.25, transform = 0 })
