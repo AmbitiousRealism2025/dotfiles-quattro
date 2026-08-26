@@ -10,6 +10,20 @@ Related: README.md carries the migration-era notes; this file picks up from
 
 ---
 
+## 2026-08-26 (later) — MacBook Pro M1 Max mirror runbook
+
+Added `README-for-macbook.md`: researched runbook (4 research lanes, Aug
+2026) for mirroring quattro onto a MacBook Pro 16" M1 Max. Install path:
+Asahi Alarm Minimal (BTRFS) + omarchy-mac `quattro` fork (upstream-sanctioned
+aarch64 port; no edge channel on ARM). Documents per-file stow deltas
+(monitors.lua full replace @scale 2; input.lua adopt fork touchpad baseline;
+looknfeel blur/shadow off), package DROP/ADAPT/SKIP translation of the
+manifests (davinci/obs/OBS→kdenlive+wf-recorder; bb→npx; obsidian→
+obsidian-appimage; discord→vesktop), hardware acceptance list (no USB-C DP
+alt-mode, no VRR/DDC/HDR/Touch ID; fixed 120Hz since kernel 6.18.4), the
+never-do list (omarchy-upgrade-to-quattro breaks aarch64 pacman), and the
+bb-style four-layer distinction ledger for substitutions.
+
 ## 2026-08-26 — pre-mirror sync to M1 Max target
 
 Refreshed this repo so GitHub reflects the live system before mirroring onto
