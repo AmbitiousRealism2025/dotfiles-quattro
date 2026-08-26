@@ -5,48 +5,22 @@ import Quickshell.Wayland
 import qs.Commons
 import qs.Ui
 
-// Shows the names of the apps open on each monitor's active workspace (instead
-// of the focused window's title), e.g. "Warp, bb". Click a name to focus it.
+// Shows the names of the apps open on the focused workspace (instead of the
+// focused window's title), e.g. "Warp, bb". Click a name to focus it.
 
 BarWidget {
   id: root
   moduleName: "omarchy.active-window"
 
   readonly property int maxLabelWidth: Number(setting("maxWidth", 320))
-
-  // BarWidget is instantiated once per monitor. Use the PanelWindow that owns
-  // this instance instead of Hyprland.focusedWorkspace, which is global and
-  // made every monitor's bar mirror the focused monitor.
-  readonly property string barMonitorName: {
-    var window = root.QsWindow ? root.QsWindow.window : null
-    var screen = window ? window.screen : null
-    return screen ? String(screen.name || "") : ""
-  }
-
-  function workspaceMonitorName(workspace) {
-    if (!workspace) return ""
-    var monitor = workspace.monitor
-    if (monitor && typeof monitor === "object") return String(monitor.name || "")
-    return String(monitor || "")
-  }
-
-  readonly property var monitorWorkspace: {
-    var monitorName = root.barMonitorName
-    if (!monitorName) return null
-
-    var values = Hyprland.workspaces.values
-    for (var i = 0; i < values.length; i++) {
-      if (root.workspaceMonitorName(values[i]) === monitorName) return values[i]
-    }
-    return null
-  }
+  readonly property var focusedWorkspace: Hyprland.focusedWorkspace
   // Optional display-name overrides from shell.json, e.g.
   // "aliases": { "TUI.tile": "herdr", "chatgpt": "Codex" }
   readonly property var aliases: setting("aliases", {})
 
   // Unique apps on the focused workspace, as { appId, name, count, toplevel }.
   readonly property var apps: {
-    var workspace = root.monitorWorkspace
+    var workspace = root.focusedWorkspace
     if (!workspace) return []
 
     var byId = ({})

@@ -10,6 +10,27 @@ Related: README.md carries the migration-era notes; this file picks up from
 
 ---
 
+## 2026-08-26 — pre-mirror sync to M1 Max target
+
+Refreshed this repo so GitHub reflects the live system before mirroring onto
+the MacBook Pro M1 Max.
+
+- omarchy: bb desktop AppImage bumped 0.39.0 → 0.40.0 (`bb.desktop` Exec +
+  X-AppImage-Version updated by the updater).
+- omarchy: active-window plugin reverted to the focused-workspace variant
+  (live edit 2026-08-25 09:04, after the per-monitor attempt in
+  `57b0518` was backed up as `ActiveWindow.qml.bak.*`). The per-monitor QML is
+  preserved in `.bak.1787662917`; manifest.json still carries its old
+  "Title of the focused window" description — cosmetic mismatch only.
+- packages: inventory refresh captured installs since 2026-08-22 —
+  antigravity-ide, davinci-resolve, gooeypi, google-chrome, grok-bot,
+  herdr-workspace-manager, qt6-imageformats, zen-browser-bin; renames
+  mise→mise-bin, quickshell-git→quickshell; AUR adds warp-terminal,
+  davinci-resolve.
+- Channel correction: machine now tracks **edge** via `omarchy-dev
+  4.0.0.r1834.g9301092-1`, not stable as previously recorded. Mirror targets
+  wanting an identical shell should install omarchy-dev too.
+
 ## 2026-08-15 — integration day (plugins, gestures, bar, keybind manager)
 
 Third-party Omarchy shell plugins installed, keybindings added, bar layout

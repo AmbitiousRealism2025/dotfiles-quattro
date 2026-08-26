@@ -1,22 +1,22 @@
 # Block devices
 NAME        FSTYPE      FSVER LABEL FSAVAIL FSUSE% MOUNTPOINTS
 zram0       swap        1     zram0                [SWAP]
-nvme1n1
-├─nvme1n1p1 vfat        FAT32
-└─nvme1n1p2 ext4        1.0   root
 nvme0n1
-├─nvme0n1p1 vfat        FAT32          1.2G    38% /boot
-└─nvme0n1p2 crypto_LUKS 2
-  └─root    btrfs                      840G     9% /home
-                                                   /var/cache/pacman/pkg
+├─nvme0n1p1 vfat        FAT32
+└─nvme0n1p2 ext4        1.0   root
+nvme1n1
+├─nvme1n1p1 vfat        FAT32       1008.1M    51% /boot
+└─nvme1n1p2 crypto_LUKS 2
+  └─root    btrfs                      805G    13% /var/cache/pacman/pkg
                                                    /var/log
+                                                   /home
                                                    /
 
 # Mounts
 TARGET                     SOURCE                    FSTYPE                         OPTIONS
 /                          /dev/mapper/root[/@]      btrfs                          rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=256,subvol=/@
-├─/var/cache/pacman/pkg    /dev/mapper/root[/@pkg]   btrfs                          rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=259,subvol=/@pkg
-├─/tmp/.mount_bb-0.3mle5QD bb-0.39.0-x86_64.AppImage fuse.bb-0.39.0-x86_64.AppImage ro,nosuid,nodev,relatime,user_id=1000,group_id=1000
+├─/tmp/.mount_bb-0.4XIjryW bb-0.40.0-x86_64.AppImage fuse.bb-0.40.0-x86_64.AppImage ro,nosuid,nodev,relatime,user_id=1000,group_id=1000
 ├─/home                    /dev/mapper/root[/@home]  btrfs                          rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=257,subvol=/@home
 ├─/var/log                 /dev/mapper/root[/@log]   btrfs                          rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=258,subvol=/@log
-└─/boot                    /dev/nvme0n1p1            vfat                           rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro
+├─/var/cache/pacman/pkg    /dev/mapper/root[/@pkg]   btrfs                          rw,relatime,compress=zstd:3,ssd,space_cache=v2,subvolid=259,subvol=/@pkg
+└─/boot                    /dev/nvme1n1p1            vfat                           rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro

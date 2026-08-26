@@ -1,5 +1,5 @@
 System:
-  Kernel: 7.1.8-arch1-3 arch: x86_64 bits: 64 compiler: gcc v: 16.2.1 clocksource: tsc
+  Kernel: 7.1.9-arch1-2 arch: x86_64 bits: 64 compiler: gcc v: 16.2.1 clocksource: tsc
   Desktop: Hyprland v: 0.56.2 vt: 1 dm: SDDM Distro: Omarchy
 Machine:
   Type: Laptop System: LENOVO product: 20Y4S0CQ00 v: ThinkPad P1 Gen 4i
@@ -8,15 +8,16 @@ Machine:
     part-nu: LENOVO_MT_20Y4_BU_Think_FM_ThinkPad P1 Gen 4i uuid: <superuser required> Firmware: UEFI
     vendor: LENOVO v: N40ET52W (1.34 ) date: 12/08/2025
 Battery:
-  ID-1: BAT0 charge: 65.5 Wh (88.5%) condition: 74/90.1 Wh (82.1%) power: 30.7 W volts: 16.16
+  ID-1: BAT0 charge: 42.4 Wh (57.4%) condition: 74/90.1 Wh (82.1%) power: 21.6 W volts: 15.24
     min: 15.52 model: SMP 5B11B79217 type: Li-poly serial: <filter> charging: status: discharging
-    control: start: 0% end: 100% cycles: 177
+    control: start: 0% end: 100% cycles: 178
+  Device-1: hidpp_battery_1 model: Logitech MX Anywhere 3S serial: <filter> charge: 50%
+    rechargeable: yes status: discharging
 CPU:
   Info: 8-core model: 11th Gen Intel Core i7-11850H bits: 64 type: MT MCP smt: enabled
     arch: Tiger Lake rev: 1 cache: L1: 640 KiB L2: 10 MiB L3: 24 MiB
-  Speed (MHz): avg: 1217 min/max: 800/4800 cores: 1: 1217 2: 1217 3: 1217 4: 1217 5: 1217 6: 1217
-    7: 1217 8: 1217 9: 1217 10: 1217 11: 1217 12: 1217 13: 1217 14: 1217 15: 1217 16: 1217
-    bogomips: 79872
+  Speed (MHz): avg: 941 min/max: 800/4800 cores: 1: 941 2: 941 3: 941 4: 941 5: 941 6: 941 7: 941
+    8: 941 9: 941 10: 941 11: 941 12: 941 13: 941 14: 941 15: 941 16: 941 bogomips: 79872
   Flags-basic: avx avx2 ht lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3
 Graphics:
   Device-1: Intel TigerLake-H GT1 [UHD Graphics] vendor: Lenovo driver: i915 v: kernel arch: Xe
@@ -26,7 +27,7 @@ Graphics:
     arch: Turing pcie: speed: 2.5 GT/s lanes: 8 ports: active: none empty: DP-1,DP-2,HDMI-A-1
     bus-ID: 01:00.0 chip-ID: 10de:1fbc class-ID: 0300
   Device-3: SunplusIT Integrated Camera driver: uvcvideo type: USB rev: 2.0 speed: 480 Mb/s
-    lanes: 1 bus-ID: 3-8:3 chip-ID: 04f2:b71d class-ID: 0e02 serial: <filter>
+    lanes: 1 bus-ID: 3-8:2 chip-ID: 04f2:b71d class-ID: 0e02 serial: <filter>
   Display: wayland server: X.org v: 1.21.1.24 with: Xwayland v: 24.1.13 compositor: Hyprland
     v: 0.56.2 driver: gpu: i915 display-ID: 1
   Monitor-1: eDP-1 model: AU Optronics 0x6a9f res: 2560x1600 dpi: 189
@@ -34,8 +35,8 @@ Graphics:
   API: EGL v: 1.5 hw: drv: intel iris drv: nvidia platforms: device: 0 drv: nvidia device: 1
     drv: iris device: 3 drv: swrast gbm: drv: iris surfaceless: drv: nvidia wayland: drv: iris x11:
     drv: iris inactive: device-2
-  API: OpenGL v: 4.6.0 compat-v: 4.6 vendor: intel mesa v: 26.1.7-arch1.1 glx-v: 1.4
-    direct-render: yes renderer: Mesa Intel UHD Graphics (TGL GT1) device-ID: 8086:9a60
+  API: OpenGL v: 4.6.0 compat-v: 4.6 vendor: nvidia mesa v: 610.57.04 glx-v: 1.4
+    direct-render: yes renderer: NVIDIA T1200 Laptop GPU/PCIe/SSE2
   API: Vulkan v: 1.4.357 layers: 4 surfaces: N/A device: 0 type: integrated-gpu
     driver: mesa intel device-ID: 8086:9a60 device: 1 type: discrete-gpu driver: nvidia
     device-ID: 10de:1fbc
@@ -45,7 +46,7 @@ Audio:
     bus-ID: 00:1f.3 chip-ID: 8086:43c8 class-ID: 0401
   Device-2: NVIDIA vendor: Lenovo driver: snd_hda_intel v: kernel pcie: speed: 16 GT/s lanes: 8
     bus-ID: 01:00.1 chip-ID: 10de:10fa class-ID: 0403
-  API: ALSA v: k7.1.8-arch1-3 status: kernel-api
+  API: ALSA v: k7.1.9-arch1-2 status: kernel-api
   Server-1: sndiod v: N/A status: off
   Server-2: PipeWire v: 1.6.8 status: active with: 1: pipewire-pulse status: active
     2: wireplumber status: active 3: pipewire-alsa type: plugin 4: pw-jack type: plugin
@@ -55,30 +56,30 @@ Network:
   IF: wlp9s0 state: up mac: <filter>
   IF-ID-1: tailscale0 state: unknown speed: -1 duplex: full mac: N/A
 Bluetooth:
-  Device-1: N/A driver: btusb v: 0.8 type: USB rev: 2.0 speed: 12 Mb/s lanes: 1 bus-ID: 3-14:5
+  Device-1: N/A driver: btusb v: 0.8 type: USB rev: 2.0 speed: 12 Mb/s lanes: 1 bus-ID: 3-14:4
     chip-ID: 8087:0032 class-ID: e001
   Report: btmgmt ID: hci0 rfk-id: 1 state: up address: <filter> bt-v: 5.4 lmp-v: 13
     class-ID: 6c010c
 Drives:
-  Local Storage: total: 1.38 TiB used: 88.32 GiB (6.3%)
-  ID-1: /dev/nvme0n1 vendor: Western Digital model: WD BLACK SN850 1TB size: 931.51 GiB
-    speed: 63.2 Gb/s lanes: 4 tech: SSD serial: <filter> fw-rev: 614900WD temp: 40.9 C scheme: GPT
-  ID-2: /dev/nvme1n1 vendor: Samsung model: MZVL2512HCJQ-00BL7 size: 476.94 GiB speed: 63.2 Gb/s
-    lanes: 4 tech: SSD serial: <filter> fw-rev: CL2QGXA7 temp: 46.9 C scheme: GPT
+  Local Storage: total: 1.38 TiB used: 123.92 GiB (8.8%)
+  ID-1: /dev/nvme0n1 vendor: Samsung model: MZVL2512HCJQ-00BL7 size: 476.94 GiB speed: 63.2 Gb/s
+    lanes: 4 tech: SSD serial: <filter> fw-rev: CL2QGXA7 temp: 39.9 C scheme: GPT
+  ID-2: /dev/nvme1n1 vendor: Western Digital model: WD BLACK SN850 1TB size: 931.51 GiB
+    speed: 63.2 Gb/s lanes: 4 tech: SSD serial: <filter> fw-rev: 614900WD temp: 36.9 C scheme: GPT
 Partition:
-  ID-1: / size: 929.5 GiB used: 87.56 GiB (9.4%) fs: btrfs dev: /dev/dm-0 mapped: root
-  ID-2: /boot size: 2 GiB used: 781 MiB (38.2%) fs: vfat dev: /dev/nvme0n1p1
-  ID-3: /home size: 929.5 GiB used: 87.56 GiB (9.4%) fs: btrfs dev: /dev/dm-0 mapped: root
-  ID-4: /var/log size: 929.5 GiB used: 87.56 GiB (9.4%) fs: btrfs dev: /dev/dm-0 mapped: root
+  ID-1: / size: 929.5 GiB used: 122.91 GiB (13.2%) fs: btrfs dev: /dev/dm-0 mapped: root
+  ID-2: /boot size: 2 GiB used: 1.01 GiB (50.7%) fs: vfat dev: /dev/nvme1n1p1
+  ID-3: /home size: 929.5 GiB used: 122.91 GiB (13.2%) fs: btrfs dev: /dev/dm-0 mapped: root
+  ID-4: /var/log size: 929.5 GiB used: 122.91 GiB (13.2%) fs: btrfs dev: /dev/dm-0 mapped: root
 Swap:
   ID-1: swap-1 type: file size: 31.05 GiB used: 0 KiB (0.0%) priority: 0 file: /swap/swapfile
-  ID-2: swap-2 type: zram size: 31.05 GiB used: 6.22 GiB (20.0%) priority: 100 dev: /dev/zram0
+  ID-2: swap-2 type: zram size: 31.05 GiB used: 0 KiB (0.0%) priority: 100 dev: /dev/zram0
 Sensors:
-  System Temperatures: cpu: 62.0 C mobo: N/A
-  Fan Speeds (rpm): fan-1: 3250 fan-2: 2989
+  System Temperatures: cpu: 49.0 C mobo: N/A
+  Fan Speeds (rpm): fan-1: 2485 fan-2: 2318
 Info:
-  Memory: total: 32 GiB note: est. available: 31.05 GiB used: 19.95 GiB (64.3%)
-  Processes: 501 Power: uptime: 2d 7h 20m states: freeze,mem,disk suspend: s2idle wakeups: 4
+  Memory: total: 32 GiB note: est. available: 31.05 GiB used: 8.97 GiB (28.9%)
+  Processes: 436 Power: uptime: 35m states: freeze,mem,disk suspend: s2idle wakeups: 1
     hibernate: platform Init: systemd v: 261 default: graphical
-  Packages: 1204 pm: pacman pkgs: 1188 pm: flatpak pkgs: 16 Compilers: clang: 22.1.8 gcc: 16.2.1
+  Packages: 1220 pm: pacman pkgs: 1204 pm: flatpak pkgs: 16 Compilers: clang: 22.1.8 gcc: 16.2.1
     Client: shell wrapper v: 5.3.15-release inxi: 3.3.41

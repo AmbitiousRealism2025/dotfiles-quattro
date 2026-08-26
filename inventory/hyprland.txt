@@ -28,11 +28,11 @@ Monitor eDP-1 (ID 0):
 	dpmsStatus: 1
 	vrr: false
 	solitary: 0
-	solitaryBlockedBy: not opaque
+	solitaryBlockedBy: windowed mode,missing candidate
 	activelyTearing: false
 	tearingBlockedBy: next frame is not torn,user settings,missing candidate
 	directScanoutTo: 0
-	directScanoutBlockedBy: user settings,missing candidate
+	directScanoutBlockedBy: user settings,software renders/cursors,missing candidate
 	disabled: false
 	currentFormat: XRGB8888
 	mirrorOf: none

@@ -67,6 +67,7 @@ gnome-keyring
 gnome-themes-extra
 gpu-screen-recorder
 grim
+grok-bot
 gst-plugin-pipewire
 gum
 gvfs-mtp
@@ -120,7 +121,7 @@ man-db
 mariadb-libs
 meld
 mesa-utils
-mise
+mise-bin
 mkinitcpio
 moonlight-qt
 mpv
@@ -140,10 +141,10 @@ obs-studio
 obsidian
 omacalc
 omacut
-omarchy
+omarchy-dev
 omarchy-keyring
 omarchy-nvim
-omarchy-settings
+omarchy-settings-dev
 omawrite
 openai-codex-desktop
 pacman-contrib
@@ -163,8 +164,9 @@ qemu-user-static-binfmt
 qrencode
 qt5-wayland
 qt6-connectivity
+qt6-imageformats
 qt6-tools
-quickshell-git
+quickshell
 ripgrep
 ruby
 rust
@@ -210,7 +212,6 @@ vlc
 voxtype-bin
 vpl-gpu-rt
 vulkan-intel
-warp-terminal
 whois
 wireless-regdb
 wireplumber
