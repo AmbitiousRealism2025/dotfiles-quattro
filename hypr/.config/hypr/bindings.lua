@@ -171,8 +171,9 @@ hl.unbind("SUPER + ALT + UP")
 hl.unbind("SUPER + ALT + DOWN")
 o.bind("SUPER + SHIFT + ALT + UP", "Move window to group on top", hl.dsp.window.move({ into_group = "u" }))
 o.bind("SUPER + SHIFT + ALT + DOWN", "Move window to group on bottom", hl.dsp.window.move({ into_group = "d" }))
+-- Mac: single internal display + built-in HDMI is the ceiling (no USB-C
+-- DisplayPort alt-mode in shipped kernels). DP-2 bind dropped; HDMI-A-1 kept.
 o.bind("SUPER + ALT + UP", "Move window to HDMI monitor (easy)", hl.dsp.exec_cmd([[hyprctl dispatch 'hl.dsp.window.move({ monitor = "HDMI-A-1" })']]))
-o.bind("SUPER + ALT + DOWN", "Move window to DP monitor (easy)", hl.dsp.exec_cmd([[hyprctl dispatch 'hl.dsp.window.move({ monitor = "DP-2" })']]))
 
 -- Switch focus between monitors with Super+Backslash.
 hl.unbind("CTRL + ALT + TAB")

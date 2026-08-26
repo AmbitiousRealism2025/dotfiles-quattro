@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=bb
-Comment=The agent IDE that builds itself (get-bb/bb)
-Exec=/home/ambitiousrealism/Applications/bb-0.40.0-x86_64.AppImage --no-sandbox %U
+Comment=The agent IDE that builds itself — locally built arm64 desktop (get-bb/bb fork build)
+Exec=/home/ambitiousrealism/Applications/bb-arm64/bb --no-sandbox %U
 Terminal=false
 Type=Application
 Icon=bb
 StartupWMClass=bb
 Categories=Development;
-X-AppImage-Version=0.40.0
+X-bb-source=local-arm64-build

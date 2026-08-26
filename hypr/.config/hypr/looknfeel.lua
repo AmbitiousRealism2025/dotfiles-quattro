@@ -1,6 +1,9 @@
--- portabeast look: dwindle, tight gaps, thin border, rounding, slight blur,
--- unfocused windows at 0.95 opacity. Border colors come from the active theme
--- (Graphene), not hardcoded values.
+-- portabeast look, Mac variant. quattro's blur/rounding/opacity do NOT port:
+-- on asahi, Hyprland compositing is much slower than on dGPUs (Hyprland
+-- discussion #10290), so omarchy-mac deliberately ships blur off, shadows
+-- off, rounding 0, animations on. Kept from quattro: dwindle layout and the
+-- tight-gap / thin-border spacing. If experimenting with blur later, start at
+-- size=4, passes=1 and measure with the debug FPS overlay; revert on any drop.
 
 hl.config({
   general = {
@@ -13,13 +16,16 @@ hl.config({
 
 hl.config({
   decoration = {
-    rounding = 10,
+    rounding = 0,
     active_opacity = 1.00,
-    inactive_opacity = 0.95,
+    inactive_opacity = 1.00,
+
+    shadow = {
+      enabled = false,
+    },
+
     blur = {
-      enabled = true,
-      size = 4,
-      passes = 2,
+      enabled = false,
     },
   },
 })

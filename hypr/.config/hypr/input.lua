@@ -1,6 +1,24 @@
 -- Keep only your personal input overrides here. Uncommented settings below
 -- replace Omarchy's defaults.
 
+-- Mac trackpad: omarchy-mac's tuned baseline (README-for-macbook.md §4).
+-- No xkb remap needed: Cmd arrives as SUPER, Option = Alt. Do NOT add
+-- altwin:swap_alt_win.
+hl.config({
+  input = {
+    touchpad = {
+      natural_scroll = true,       -- macOS direction
+      tap_to_click = false,        -- asahi trackpad sends stray taps while typing
+      clickfinger_behavior = true, -- 2-finger click = RMB, no button zones
+      scroll_factor = 0.4,
+      disable_while_typing = true,
+    },
+  },
+})
+
+-- App-specific touchpad scroll speeds.
+o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
+
 -- Keyboard layout and options.
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
 -- hl.config({

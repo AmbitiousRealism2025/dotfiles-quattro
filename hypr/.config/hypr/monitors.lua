@@ -1,25 +1,20 @@
--- portabeast monitor layout, ported from the NixOS side (INVENTORY: LG ULTRAGEAR
--- pinned by description at 2560x1440@143.93 scale 1, eDP-1 2560x1600@60.03 scale 1.6).
---
--- The LG is not connected at port time. When it is docked:
---   1. hyprctl monitors   (get the full description string and confirm 143.93)
---   2. uncomment the LG line below with the exact description
---   3. move eDP-1 to position "2560x0" (right of the LG, per the old layout)
---
--- Fractional 1.6 scale: Hyprland handles the fraction natively; GDK_SCALE stays 1
--- (an integer 2 here would make X11/GTK2 apps render doubled).
-
-local omarchy_gdk_scale = 1
+-- MacBook Pro 16" M1 Max XDR: eDP-1, native 3456x2234.
+-- (Mac delta from quattro's LG/eDP-1 2560x1600@1.6/HDMI stack — see
+-- README-for-macbook.md §4. Scale must be 2 or "auto"; fractional values
+-- produce invalid logical pixels on this panel.)
+local omarchy_gdk_scale = 2
+local omarchy_monitor_scale = "auto"
 
 hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
 
--- External LG ULTRAGEAR (description string from the NixOS config; verify the
--- 143.93 mode with `hyprctl monitors` on first dock).
-hl.monitor({ output = "desc:LG Electronics LG ULTRAGEAR 301MXUN23894", mode = "2560x1440@143.93", position = "0x0", scale = 1 })
-
--- Laptop panel, right of the LG.
--- While undocked, position "2560x0" just offsets the origin with no LG present;
--- set it back to "auto" if that bothers you before the first dock.
-hl.monitor({ output = "eDP-1", mode = "2560x1600@60.03000", position = "auto", scale = 1.6, transform = 0 })
-
-hl.monitor({ output = "HDMI-A-1", mode = "1920x1080@60.00000", position = "320x-1080", scale = 1.25, transform = 0 })
+hl.monitor({
+  output = "eDP-1",       -- verified via hyprctl monitors all
+  mode = "preferred",     -- 60 Hz. Fixed 120 Hz (kernel >= 6.18.4): use "highrr"
+  position = "auto",
+  scale = 2,              -- 1728x1117 logical, clean divide.
+  transform = 0,
+  -- Notch clearance: notch is ~74px physical ≈ 37 logical at scale 2.
+  -- Window top = reserved + gaps_out(16) + border(1) → 20+17=37: window tops
+  -- land exactly at the notch's bottom edge. (The bar is at the BOTTOM.)
+  reserved_area = { top = 20 },
+})
