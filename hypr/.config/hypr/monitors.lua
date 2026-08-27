@@ -13,8 +13,12 @@ hl.monitor({
   position = "auto",
   scale = 2,              -- 1728x1117 logical, clean divide.
   transform = 0,
-  -- Notch clearance: notch is ~74px physical ≈ 37 logical at scale 2.
-  -- Window top = reserved + gaps_out(16) + border(1) → 20+17=37: window tops
-  -- land exactly at the notch's bottom edge. (The bar is at the BOTTOM.)
-  reserved_area = { top = 20 },
+  -- Notch clearance is handled by the notch-strip shell plugin
+  -- (ambitiousrealism.notch-strip): a top layer surface covering the full
+  -- notch cutout (32 logical px) whose exclusive zone reserves the top edge
+  -- for windows. Window top = 32 + gaps_out(16) + border(1) = 49. Do not
+  -- re-add reserved_area here — a manual reserve pushes every top layer
+  -- surface (including the strip) below the notch and re-opens the gap.
 })
+
+hl.monitor({ output = "eDP-1", mode = "3456x2234@120.00000", position = "0x0", scale = 1, transform = 0 })

@@ -145,6 +145,15 @@ hl.bind("SUPER + TAB", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']])
 -- QuickApps HUD (bjarneo plugin): Iron Man-style quick app ring.
 hl.bind("SUPER + A", hl.dsp.exec_cmd([[omarchy-shell shell toggle quickapps-hud '{}']]), { description = "QuickApps HUD" })
 
+-- Fast MRU selector for every open Hyprland pane. SUPER+grave previously
+-- toggled the scratchpad; that remains available through SUPER+S.
+hl.unbind("SUPER + grave")
+o.bind(
+  "SUPER + grave",
+  "App selector",
+  "omarchy-shell shell toggle ambitiousrealism.applist '{}'"
+)
+
 -- Omatheme theme designer (Davies-Sam plugin): live editing of the running
 -- Quattro theme's borders, chrome, palette and backgrounds, plus theme
 -- fork/publish. Floats via a title rule in hyprland.lua (all Quickshell
@@ -175,8 +184,17 @@ o.bind("SUPER + SHIFT + ALT + DOWN", "Move window to group on bottom", hl.dsp.wi
 -- DisplayPort alt-mode in shipped kernels). DP-2 bind dropped; HDMI-A-1 kept.
 o.bind("SUPER + ALT + UP", "Move window to HDMI monitor (easy)", hl.dsp.exec_cmd([[hyprctl dispatch 'hl.dsp.window.move({ monitor = "HDMI-A-1" })']]))
 
--- Switch focus between monitors with Super+Backslash.
+-- Monitor focus on Super+\ (either command key — Hyprland's modifier mask
+-- cannot distinguish left vs right command; see dictation note below).
 hl.unbind("CTRL + ALT + TAB")
 hl.unbind("SUPER + BACKSLASH")
 o.bind("SUPER + BACKSLASH", "Focus on next monitor", hl.dsp.focus({ monitor = "+1" }))
+
+-- Dictation toggle on Super+Z. Plain Hyprland binds can't distinguish left vs
+-- right command keys (modifier masks are side-agnostic), so the earlier plan of
+-- right-cmd+\ is not expressible; SUPER+Z was free (ALT+Z etc. are the editing
+-- shortcuts, zoom is SUPER+CTRL+Z).
+if o.cmd_present("voxtype") then
+  o.bind("SUPER + Z", "Toggle dictation", "voxtype record toggle")
+end
 
