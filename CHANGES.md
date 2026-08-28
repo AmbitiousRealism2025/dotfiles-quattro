@@ -10,6 +10,19 @@ Related: README.md carries the migration-era notes; this file picks up from
 
 ---
 
+## 2026-08-27 — Muster widget disabled while omarchy-1 is offline
+
+The `dev.botmarchy.muster` bar widget polls the Botmarchy gateway
+(`ambitiousrealism@omarchy-1.tail9106ac.ts.net`, 100.83.160.47) over SSH every
+10s. omarchy-1 went offline 2026-08-24 ~15:33, leaving the widget retrying
+through DERP forever (tailscaled journal churn, `tx` bytes accruing on a
+half-open session). Disabled via `omarchy plugin disable dev.botmarchy.muster`
+(surgical removal from `bar.layout.right`; plugin still installed, cache kept
+at `~/.cache/botmarchy/muster-state.json`). Re-enable with
+`omarchy plugin enable dev.botmarchy.muster` once the gateway is back.
+Stale ssh ControlMaster mux killed. Note for the MacBook mirror: the widget
+would behave identically there if stowed while omarchy-1 is down.
+
 ## 2026-08-26 (later) — MacBook Pro M1 Max mirror runbook
 
 Added `README-for-macbook.md`: researched runbook (4 research lanes, Aug

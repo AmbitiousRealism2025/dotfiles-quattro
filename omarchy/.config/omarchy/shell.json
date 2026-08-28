@@ -58,8 +58,8 @@
         },
         {
           "id": "stappmus.activity-monitor",
-          "temperatureUnit": "Celsius",
-          "openExpanded": true
+          "openExpanded": true,
+          "temperatureUnit": "Celsius"
         },
         {
           "id": "omarchy.tailscale"
@@ -81,17 +81,18 @@
         },
         {
           "id": "omarchy.power"
-        },
-        {
-          "id": "dev.botmarchy.muster",
-          "sshTarget": "ambitiousrealism@omarchy-1.tail9106ac.ts.net",
-          "intervalSec": "10"
         }
       ]
     },
     "position": "top",
     "transparent": false
   },
+  "cloneSourceRestores": [
+    "ambitiousrealism.idle"
+  ],
+  "disabledPlugins": [
+    "omarchy.idle"
+  ],
   "idle": {
     "lock": 900,
     "screensaver": 300
@@ -119,11 +120,5 @@
       "id": "ambitiousrealism.idle"
     }
   ],
-  "version": 1,
-  "disabledPlugins": [
-    "omarchy.idle"
-  ],
-  "cloneSourceRestores": [
-    "ambitiousrealism.idle"
-  ]
+  "version": 1
 }
