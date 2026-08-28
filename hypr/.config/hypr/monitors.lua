@@ -21,4 +21,10 @@ hl.monitor({
   -- surface (including the strip) below the notch and re-opens the gap.
 })
 
-hl.monitor({ output = "eDP-1", mode = "3456x2234@120.00000", position = "0x0", scale = 1, transform = 0 })
+-- DISABLED 2026-08-27 (quattro-side review): this duplicate eDP-1 rule
+-- overrode the block above — Hyprland applies the LAST matching rule —
+-- silently dropping the panel to scale 1 (unusable on 16"). The rule above
+-- (scale 2) now governs at preferred/60 Hz. If you want 120 Hz, change the
+-- block above to mode = "highrr" (or "3456x2234@120") but KEEP scale = 2.
+-- Do not re-add a second eDP-1 rule.
+-- hl.monitor({ output = "eDP-1", mode = "3456x2234@120.00000", position = "0x0", scale = 1, transform = 0 })
