@@ -198,3 +198,6 @@ if o.cmd_present("voxtype") then
   o.bind("SUPER + Z", "Toggle dictation", "voxtype record toggle")
 end
 
+-- >>> window-capture window-capture@52886 begin (added by a bb plugin; change or remove it from the plugin's settings)
+hl.bind("SUPER + CTRL + SHIFT + S", hl.dsp.exec_cmd([[curl -fsS -m 10 -X POST -H 'content-type: application/json' -d '{}' http://127.0.0.1:52886/api/v1/plugins/window-capture/http/capture >/dev/null || notify-send -a bb "Couldn't capture the window" "Is bb running? The shortcut talks to http://127.0.0.1:52886/api/v1/plugins/window-capture/http/capture"]]), { description = "Capture window to bb" })
+-- <<< window-capture window-capture@52886 end
