@@ -54,10 +54,10 @@ o.bind("SHIFT + ALT + X", "Terminal Ctrl+X", editing_shortcut(true, "CTRL", "X")
 -- Kitty handles SHIFT+ALT+C/V directly. Do not bind them in Hyprland or the
 -- compositor will consume the keypress before Kitty sees it.
 
--- Keybindings cheat sheet on SUPER+/. SUPER+K was its Omarchy default but is
--- repurposed below as focus-down. SUPER+SLASH was "Monitor scaling up" — its
--- "scaling down" partner on SUPER+ALT+SLASH still exists, and the Display
--- panel (SUPER+CTRL+D) covers scaling interactively.
+-- Additional keybindings cheat sheet on SUPER+/. Stock SUPER+K also opens it.
+-- SUPER+SLASH was "Monitor scaling up" — its "scaling down" partner on
+-- SUPER+ALT+SLASH still exists, and the Display panel (SUPER+CTRL+D) covers
+-- scaling interactively.
 hl.unbind("SUPER + SLASH")
 o.bind("SUPER + SLASH", "Keybindings", "omarchy-menu-keybindings")
 
@@ -72,27 +72,17 @@ o.bind("SUPER + W", "Fullscreen", hl.dsp.window.fullscreen({ mode = "fullscreen"
 hl.unbind("SUPER + F")
 o.bind("SUPER + F", "Maximize", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
--- Focus: H/J/K/L with the portabeast J/K inversion — J is UP, K is DOWN.
--- Do not "fix" this to vim convention; it is deliberate (INVENTORY notes it).
--- Defaults replaced: SUPER+J was togglesplit, SUPER+K was keybindings menu,
--- SUPER+L was workspace layout toggle.
-hl.unbind("SUPER + J")
-hl.unbind("SUPER + K")
-hl.unbind("SUPER + L")
-o.bind("SUPER + H", "Focus left", hl.dsp.focus({ direction = "l" }))
-o.bind("SUPER + J", "Focus up", hl.dsp.focus({ direction = "u" }))
-o.bind("SUPER + K", "Focus down", hl.dsp.focus({ direction = "d" }))
-o.bind("SUPER + L", "Focus right", hl.dsp.focus({ direction = "r" }))
+-- Keep stock SUPER+H/J/K/L: H is unused, J toggles split, K opens the
+-- keybindings menu, and L toggles the workspace layout.
 
--- Swap quartet completing the inverted-J/K pattern (SHIFT+J = up). Float/tiling
+-- Swap quartet with the custom inverted-J/K pattern (SHIFT+J = up). Float/tiling
 -- toggle stays on the stock SUPER+T.
 o.bind("SUPER + SHIFT + H", "Move window left", hl.dsp.window.swap({ direction = "l" }))
 o.bind("SUPER + SHIFT + J", "Move window up", hl.dsp.window.swap({ direction = "u" }))
 o.bind("SUPER + SHIFT + K", "Move window down", hl.dsp.window.swap({ direction = "d" }))
 o.bind("SUPER + SHIFT + L", "Move window right", hl.dsp.window.swap({ direction = "r" }))
 
--- Restored stock dispatchers displaced by the port: togglesplit lost its
--- SUPER+J home to focus-up, workspace layout toggle lost SUPER+L to focus-right.
+-- Additional shortcuts for stock SUPER+J and SUPER+L actions.
 o.bind("SUPER + U", "Toggle window split", hl.dsp.layout("togglesplit"))
 o.bind("SUPER + I", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
 
@@ -115,13 +105,6 @@ o.bind("SHIFT + PRINT", "Screenshot fullscreen", "omarchy capture screenshot ful
 hl.unbind("SUPER + PRINT")
 o.bind("SUPER + PRINT", "Screenshot window", "omarchy capture screenshot windows")
 
--- Dictation on the bare INSERT key, like the NixOS side. Dormant until voxtype
--- is installed (playbook D2 defers it); the guard makes the bind appear then.
-if o.cmd_present("voxtype") then
-  o.bind("INSERT", "Toggle dictation", "voxtype record toggle")
-end
-
-
 -- Workspace overview (Mirador plugin): fullscreen workspaces+windows view,
 -- keyboard navigation, drag windows between workspaces. This replaces the
 -- default previous-workspace binding and leaves SHIFT+TAB free for applications.
@@ -133,17 +116,19 @@ o.bind(
   "omarchy-shell shell summon mirador '{}'"
 )
 
--- Omni command palette (bjarneo plugin): apps, Omarchy actions, files, themes,
--- GitHub search, tldr, Ollama prompts. ALT+SPACE toggles it; SUPER+TAB opens it
--- too (replaces the default "next workspace" cycle — that stays on SUPER+CTRL+TAB
--- as "former workspace" and the wheel). Added 2026-08-22.
-hl.unbind("ALT + SPACE")
-hl.bind("ALT + SPACE", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']]), { description = "Omni" })
-hl.unbind("SUPER + TAB")
-hl.bind("SUPER + TAB", hl.dsp.exec_cmd([[omarchy-shell shell toggle omni '{}']]), { description = "Omni" })
+-- Omni plugin removed 2026-09-21 (unused). ALT+SPACE now opens Vimarchy hints
+-- (block at the end of this file); SUPER+TAB returns to Omarchy's default
+-- "Next workspace".
+--
+-- Omarchy's default "Dismiss last notification" (SUPER+comma) moved to
+-- SUPER+period so Vimarchy's settings popup can keep Cmd+, — macOS muscle
+-- memory. The Vimarchy bindings block at the end of this file binds SUPER+comma.
+hl.unbind("SUPER + comma")
+o.bind("SUPER + period", "Dismiss last notification", "omarchy-shell notifications dismissOne")
 
--- QuickApps HUD (bjarneo plugin): Iron Man-style quick app ring.
-hl.bind("SUPER + A", hl.dsp.exec_cmd([[omarchy-shell shell toggle quickapps-hud '{}']]), { description = "QuickApps HUD" })
+-- Ask (clickety-clacks plugin): transient conversation with the coding agent.
+-- Replaces QuickApps HUD, which was previously bound here and has been removed.
+o.bind("SUPER + A", "Ask", "omarchy-shell shell toggle clickety-clacks.ask '{}'")
 
 -- Fast MRU selector for every open Hyprland pane. SUPER+grave previously
 -- toggled the scratchpad; that remains available through SUPER+S.
@@ -160,11 +145,11 @@ o.bind(
 -- surfaces share the org.quickshell class, so the rule matches on title).
 o.bind("SUPER + SHIFT + CTRL + T", "Theme designer", "omarchy-shell shell toggle davies-sam.omatheme '{}'")
 
--- Kitty is the default terminal (SUPER+RETURN via xdg-terminal-exec).
--- Warp is available here as the secondary terminal.
+-- Warp is the default terminal (SUPER+RETURN via xdg-terminal-exec).
+-- Kitty is the secondary terminal; this shortcut previously opened Warp.
 hl.unbind("SUPER + E")
 hl.unbind("SUPER + ALT + RETURN")
-o.bind("SUPER + ALT + RETURN", "Warp terminal", { launch = "warp-terminal" })
+o.bind("SUPER + ALT + RETURN", "Kitty terminal", { launch = "kitty" })
 
 -- >>> keybind-manager begin (managed by dev.deoxizn.keybind-manager; edit the plugin, not this block)
 o.bind("SUPER+ALT+PRINT", "Screen record", "omarchy-capture-screenrecording")
@@ -195,8 +180,153 @@ o.bind("SUPER + BACKSLASH", "Focus on next monitor", hl.dsp.focus({ monitor = "+
 -- right-cmd+\ is not expressible; SUPER+Z was free (ALT+Z etc. are the editing
 -- shortcuts, zoom is SUPER+CTRL+Z).
 if o.cmd_present("voxtype") then
-  o.bind("SUPER + Z", "Toggle dictation", "voxtype record toggle")
+  -- Voxtype 1.0.1 daemon capture is broken on this host (full-scale garbage
+  -- via CPAL/ALSA); Super+Z uses the voxtype-dictate arecord workaround.
+  -- Drop the Omarchy default daemon-path dictation binds (SUPER+CTRL+X, F9,
+  -- INSERT) so nothing silently routes to the broken daemon.
+  hl.unbind("SUPER + CTRL + X")
+  hl.unbind("F9")
+  o.bind("SUPER + Z", "Toggle dictation", "voxtype-dictate")
 end
+
+
+-- Strata as the Omarchy file manager (replaces Flea).
+hl.unbind("SUPER + SHIFT + F")
+o.bind("SUPER + SHIFT + F", "File manager", { launch = 'strata' })
+hl.unbind("SUPER + ALT + SHIFT + F")
+o.bind("SUPER + ALT + SHIFT + F", "File manager (cwd)", { launch = 'strata "$(omarchy-cmd-terminal-cwd)"' })
+
+
+-- ── omarchy-mac session persistence ─────────────────────────────────────────
+-- Apple Silicon has no hibernate; omarchy-mac snapshots open windows + tmux
+-- to disk and restores them on next login. SUPER+CTRL+M was unbound.
+o.bind("SUPER + CTRL + M", "Save session snapshot", "omarchy-mac save --notify")
+
+-- Vimarchy (clickety-clacks plugin): vimium-style window hints, swap, radial
+-- workspace moves. Installed 2026-09-21. SUPER+comma opens its settings panel
+-- (notification dismiss moved to SUPER+period, see top of file). ALT+SPACE
+-- opens the hint overlay. Escape cancels; SUPER+ESCAPE resets any submap.
+local vimarchy = os.getenv("HOME") .. "/.config/omarchy/plugins/vimarchy/bin"
+local hint_keys = "asdfghjklqwertyuiopzxcvbnm"
+
+local function vimarchy_escape_bindings()
+  hl.bind("SUPER + comma", hl.dsp.exec_cmd(vimarchy .. "/settings"))
+  hl.bind("ESCAPE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("CTRL + ALT + SHIFT + SPACE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("SUPER + ESCAPE", hl.dsp.submap("reset"))
+end
+
+hl.define_submap("vimarchy", function()
+  for slot = 1, #hint_keys do
+    local letter = hint_keys:sub(slot, slot)
+    hl.bind(letter, hl.dsp.exec_cmd(vimarchy .. "/press " .. letter))
+    hl.bind("ALT + " .. letter, hl.dsp.exec_cmd(vimarchy .. "/press " .. letter .. " alt"))
+    hl.bind("ALT + " .. letter, hl.dsp.exec_cmd(vimarchy .. "/release " .. letter), { release = true })
+    hl.bind(letter, hl.dsp.exec_cmd(vimarchy .. "/release " .. letter), { release = true })
+  end
+  vimarchy_escape_bindings()
+end)
+
+hl.define_submap("vimarchy-double", function()
+  for first = 1, #hint_keys do
+    local letter = hint_keys:sub(first, first)
+    hl.bind(letter, hl.dsp.submap("vimarchy-" .. letter))
+    hl.bind("ALT + " .. letter, hl.dsp.submap("vimarchy-" .. letter))
+  end
+  vimarchy_escape_bindings()
+end)
+
+for first = 1, #hint_keys do
+  local first_letter = hint_keys:sub(first, first)
+  hl.define_submap("vimarchy-" .. first_letter, function()
+    for second = 1, #hint_keys do
+      local second_letter = hint_keys:sub(second, second)
+      local hint = first_letter .. second_letter
+      hl.bind(second_letter, hl.dsp.exec_cmd(vimarchy .. "/press " .. hint))
+      hl.bind("ALT + " .. second_letter, hl.dsp.exec_cmd(vimarchy .. "/press " .. hint .. " alt"))
+      hl.bind("ALT + " .. second_letter, hl.dsp.exec_cmd(vimarchy .. "/release " .. hint), { release = true })
+      hl.bind(second_letter, hl.dsp.exec_cmd(vimarchy .. "/release " .. hint), { release = true })
+    end
+    vimarchy_escape_bindings()
+  end)
+end
+
+hl.define_submap("vimarchy-workspaces", function()
+  for key in ("1234567890s"):gmatch(".") do
+    hl.bind(key, hl.dsp.exec_cmd(vimarchy .. "/workspace-select " .. key))
+    hl.bind("ALT + " .. key, hl.dsp.exec_cmd(vimarchy .. "/workspace-select " .. key .. " alt"))
+  end
+  hl.bind("ESCAPE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("ALT + ESCAPE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("CTRL + ALT + SHIFT + SPACE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("SUPER + ESCAPE", hl.dsp.submap("reset"))
+end)
+
+hl.define_submap("vimarchy-swap", function()
+  for slot = 1, #hint_keys do
+    local letter = hint_keys:sub(slot, slot)
+    hl.bind(letter, hl.dsp.exec_cmd(vimarchy .. "/swap-press " .. letter))
+    hl.bind(letter, hl.dsp.exec_cmd(vimarchy .. "/swap-release " .. letter), { release = true })
+  end
+  vimarchy_escape_bindings()
+end)
+
+hl.define_submap("vimarchy-swap-double", function()
+  for first = 1, #hint_keys do
+    local letter = hint_keys:sub(first, first)
+    hl.bind(letter, hl.dsp.submap("vimarchy-swap-" .. letter))
+  end
+  vimarchy_escape_bindings()
+end)
+
+for first = 1, #hint_keys do
+  local first_letter = hint_keys:sub(first, first)
+  hl.define_submap("vimarchy-swap-" .. first_letter, function()
+    for second = 1, #hint_keys do
+      local second_letter = hint_keys:sub(second, second)
+      local hint = first_letter .. second_letter
+      hl.bind(second_letter, hl.dsp.exec_cmd(vimarchy .. "/swap-press " .. hint))
+      hl.bind(second_letter, hl.dsp.exec_cmd(vimarchy .. "/swap-release " .. hint), { release = true })
+    end
+    vimarchy_escape_bindings()
+  end)
+end
+
+-- After a normal selection, only a quick repeat of that hint's final letter is
+-- intercepted. Every other key continues to the newly focused application.
+for slot = 1, #hint_keys do
+  local letter = hint_keys:sub(slot, slot)
+  hl.define_submap("vimarchy-double-tap-" .. letter, function()
+    hl.bind(letter, hl.dsp.exec_cmd(vimarchy .. "/double-tap " .. letter))
+    hl.bind("ALT + " .. letter, hl.dsp.exec_cmd(vimarchy .. "/double-tap " .. letter .. " alt"))
+    hl.bind("ESCAPE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+    hl.bind("CTRL + ALT + SHIFT + SPACE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+    hl.bind("SUPER + ESCAPE", hl.dsp.submap("reset"))
+  end)
+end
+
+hl.define_submap("vimarchy-settings", function()
+  hl.bind("ESCAPE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("CTRL + ALT + SHIFT + SPACE", hl.dsp.exec_cmd(vimarchy .. "/cancel"))
+  hl.bind("SUPER + ESCAPE", hl.dsp.submap("reset"))
+end)
+
+-- Caps Unlock's default SUPER-2 chord opens Vimarchy. Option+Space is free.
+o.bind("CTRL + ALT + SHIFT + SPACE", "Vimarchy window hints (SUPER-2)", vimarchy .. "/open")
+
+-- fathom: begin
+-- Gives Alt+Tab / Alt+Shift+Tab to the Fathom plugin (depth-based Alt-Tab).
+-- No-ops when the plugin is absent or disabled in shell.json. Verified with:
+--   bash ~/.config/omarchy/plugins/io.github.mtolhuys.fathom/bin/load-bindings --check
+do
+  local fathom = os.getenv("HOME") .. "/.config/omarchy/plugins/io.github.mtolhuys.fathom/hypr/fathom.lua"
+  local file = io.open(fathom, "r")
+  if file then
+    file:close()
+    pcall(dofile, fathom)
+  end
+end
+-- fathom: end
 
 -- >>> window-capture window-capture@52886 begin (added by a bb plugin; change or remove it from the plugin's settings)
 hl.bind("SUPER + CTRL + SHIFT + S", hl.dsp.exec_cmd([[curl -fsS -m 10 -X POST -H 'content-type: application/json' -d '{}' http://127.0.0.1:52886/api/v1/plugins/window-capture/http/capture >/dev/null || notify-send -a bb "Couldn't capture the window" "Is bb running? The shortcut talks to http://127.0.0.1:52886/api/v1/plugins/window-capture/http/capture"]]), { description = "Capture window to bb" })
