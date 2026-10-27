@@ -1,9 +1,6 @@
--- portabeast look, Mac variant. quattro's blur/rounding/opacity do NOT port:
--- on asahi, Hyprland compositing is much slower than on dGPUs (Hyprland
--- discussion #10290), so omarchy-mac deliberately ships blur off, shadows
--- off, rounding 0, animations on. Kept from quattro: dwindle layout and the
--- tight-gap / thin-border spacing. If experimenting with blur later, start at
--- size=4, passes=1 and measure with the debug FPS overlay; revert on any drop.
+-- portabeast look, Mac variant. On Asahi, blur/rounding/shadows cost more
+-- than on dGPUs, so disable them except for the explicitly selected Norrsken
+-- glass theme. If performance drops, switch themes to restore these defaults.
 
 hl.config({
   general = {
@@ -14,18 +11,24 @@ hl.config({
   },
 })
 
-hl.config({
-  decoration = {
-    rounding = 0,
-    active_opacity = 1.00,
-    inactive_opacity = 1.00,
+local theme_file = io.open((os.getenv("HOME") or "") .. "/.local/state/omarchy/current/theme.name", "r")
+local theme_name = theme_file and theme_file:read("*l")
+if theme_file then theme_file:close() end
 
-    shadow = {
-      enabled = false,
-    },
+if theme_name ~= "norrsken" then
+  hl.config({
+    decoration = {
+      rounding = 0,
+      active_opacity = 1.00,
+      inactive_opacity = 1.00,
 
-    blur = {
-      enabled = false,
+      shadow = {
+        enabled = false,
+      },
+
+      blur = {
+        enabled = false,
+      },
     },
-  },
-})
+  })
+end
