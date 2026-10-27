@@ -1,19 +1,35 @@
 -- Keep only your personal input overrides here. Uncommented settings below
 -- replace Omarchy's defaults.
 
--- Mac trackpad: omarchy-mac's tuned baseline (README-for-macbook.md §4).
+-- Mac trackpad configuration from DanielLemky's input.lua gist.
 -- No xkb remap needed: Cmd arrives as SUPER, Option = Alt. Do NOT add
 -- altwin:swap_alt_win.
 hl.config({
   input = {
+    -- Caps Unlock owns Caps Lock; do not reinterpret it as Compose.
+    kb_options = "shift:both_capslock_cancel",
     touchpad = {
-      natural_scroll = true,       -- macOS direction
-      tap_to_click = false,        -- asahi trackpad sends stray taps while typing
-      clickfinger_behavior = true, -- 2-finger click = RMB, no button zones
-      scroll_factor = 0.4,
+      natural_scroll = true,
+      tap_to_click = false,
       disable_while_typing = true,
+      tap_and_drag = false,
+      drag_lock = false,
+      clickfinger_behavior = true,
+      scroll_factor = 0.2,
     },
   },
+
+  -- Commit a workspace swipe after 25% travel.
+  gestures = {
+    workspace_swipe_cancel_ratio = 0.25,
+  },
+})
+
+-- Apply custom acceleration only to the built-in MacBook trackpad.
+hl.device({
+  name = "apple-spi-trackpad",
+  accel_profile = "custom 1.0 0.0 0.05 0.15 0.35 0.75 1.25",
+  scroll_points = "1.0 0.0 0.02 0.07 0.2 0.6 1.0",
 })
 
 -- App-specific touchpad scroll speeds.
@@ -94,4 +110,9 @@ hl.gesture({
 
 -- Three-finger horizontal swipe: cycle through workspaces (native Hyprland
 -- gesture; vertical is Mirador's, horizontal is workspace switching).
-hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+hl.gesture({
+  fingers = 3,
+  direction = "horizontal",
+  action = "workspace",
+  scale = 0.75,
+})
